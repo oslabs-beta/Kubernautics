@@ -8,7 +8,6 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js'
 	},
-
 	module: {
 		rules: [
 			{
@@ -22,19 +21,19 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.s[ac]ss$/i,
+				test: /\.s[ac]ss$/,
 				use: ['style-loader', 'css-loader', 'sass-loader']
 			},
-
-			// For .css
 			{
 				test: /\.css$/,
 				use: ['style-loader', 'css-loader']
 			},
 		]
 	},
+  resolve: {
+		extensions: ['.*', '.js', '.jsx']
+	},
 	plugins: [
-		//plugin to creat html files to serve bundles
 		new htmlWebpackPlugin({
 			template: './src/index.html'
 		})
@@ -46,9 +45,6 @@ module.exports = {
 		proxy: {
 			'/api/**': 'http://localhost:3000',
 		}
-	},
-	resolve: {
-		extensions: ['.*', '.js', '.jsx']
 	},
 }
 

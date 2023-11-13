@@ -1,1 +1,5 @@
+# nodejs ignores
 node_modules/
+
+# webpack build artifacts
+dist/

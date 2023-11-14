@@ -38,14 +38,14 @@ module.exports = {
 			template: './src/index.html'
 		})
 	],
-  devServer: {
-    proxy: {
-      '/metrics': {
-        target: 'http://localhost:9090',
-        changeOrigin: true,
-      },
-    },
-  },
+  // devServer: {
+  //   proxy: {
+  //     '/metrics': {
+  //       target: 'http://localhost:9090',
+  //       changeOrigin: true,
+  //     },
+  //   },
+  // },
 }
 
 

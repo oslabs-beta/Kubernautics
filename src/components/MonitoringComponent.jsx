@@ -4,17 +4,21 @@ import { Line } from 'react-chartjs-2';
 const MonitoringComponent = () => {
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/prometheus');
-      const rawData = await response.text();
-      console.log(rawData);
+      const response = await fetch('http://localhost:3001/pull', {
+        method: 'POST',
+      });
+      const data = await response.json();
+      console.log('Data from server:', data);
     } catch (error) {
       console.error('Error fetching data', error);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []); 
+  
+  fetchData();
+  
+  // useEffect(() => {
+  //   fetchData();
+  // }, []); 
 
   return (
     <div>

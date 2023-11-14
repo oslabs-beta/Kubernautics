@@ -40,13 +40,14 @@ const NavBar = (props) => {
 const Charts = (props) => {
   return (
   <div className="charts">
-    <h1></h1>
+    <h2>Metrics displays will go here...</h2>
      <ChartOne/> 
      <ChartTwo/> 
      <ChartThree/> 
    </div>
   )
 }
+
 
 const ChartOne = (props) => {
   return (
@@ -67,9 +68,11 @@ const ChartTwo = (props) => {
 const ChartThree = (props) => {
   return (
     <div id='ChartThree'>
-      <h1>The third metric will go here</h1>
+      <h1>The third metric will go here, etc.</h1>
     </div>
   )
 }
+
+
 
 export default App;

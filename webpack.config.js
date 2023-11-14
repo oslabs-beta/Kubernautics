@@ -38,14 +38,14 @@ module.exports = {
 			template: './src/index.html'
 		})
 	],
-	devServer: {
-		static: path.join(__dirname, 'dist'),
-		compress: true,
-		port: 8080,
-		proxy: {
-			'/api/**': 'http://localhost:3000',
-		}
-	},
+  devServer: {
+    proxy: {
+      '/metrics': {
+        target: 'http://localhost:9090',
+        changeOrigin: true,
+      },
+    },
+  },
 }
 
 

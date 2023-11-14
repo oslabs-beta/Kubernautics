@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react';
+import MonitoringComponent from './MonitoringComponent';
 
-function App () {
+const App = () => {
   return (
     <div>
-      <p>Our Test App</p>
+      <MonitoringComponent />
     </div>
-  )
-}
+  );
+};
 
 export default App;

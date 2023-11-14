@@ -45,7 +45,7 @@ if [ $1 == 'up' ]; then
         minikube start
     fi
     
-    # start up the devspace dev environment in a project-specific namespace
+    # start up the devspace dev environment in a project-specific k8s namespace
     devspace use namespace kubernautics-dev
     devspace dev
 elif [ $1 == 'down' ]; then

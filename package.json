@@ -6,8 +6,8 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "cluster": "./scripts/dev_cluster.sh",
-    "dev": "NODE_ENV=development concurrently 'PORT=3000 nodemon server/server.js' 'webpack-dev-server --open'",
-    "start": "NODE_ENV=production PORT=8080 node server/server.js",
+    "dev": "NODE_ENV=development concurrently 'nodemon server/server.js' 'webpack-dev-server --open'",
+    "start": "NODE_ENV=production node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

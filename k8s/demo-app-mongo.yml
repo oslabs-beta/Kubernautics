@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-deployment
+  name: demo-app-mongo-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongo
+      app: demo-app-mongo
   template:
     metadata:
       labels:
-        app: mongo
+        app: demo-app-mongo
     spec:
       containers:
       - name: mongodb
@@ -25,21 +25,21 @@ spec:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
             secretKeyRef:
-              name: mongo-secret
+              name: demo-app-mongo-secret
               key: mongo-user
         - name: MONGO_INITDB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mongo-secret
+              name: demo-app-mongo-secret
               key: mongo-password
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-service
+  name: demo-app-mongo-service
 spec:
   selector:
-    app: mongo
+    app: demo-app-mongo
   ports:
   - port: 27017
     targetPort: 27017

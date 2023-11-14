@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kubernautics
-        image: docker.io/library/kubernautics:latest
+        image: kubernautics:latest
         resources:
           limits:
             memory: "512Mi"

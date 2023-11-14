@@ -21,9 +21,11 @@ pipelines:
 # This is a list of `images` that DevSpace can build for this project
 # We recommend to skip image building during development (devspace dev) as much as possible
 images:
-  app:
-    image: docker.io/library/kubernautics:latest
+  kubernautics:
+    image: kubernautics
     dockerfile: ./Dockerfile
+    tags:
+    - latest
 
 # This is a list of `deployments` that DevSpace can create for this project
 deployments:
@@ -37,7 +39,7 @@ deployments:
 dev:
   app:
     # Search for the container that runs this image
-    imageSelector: docker.io/library/kubernautics:latest
+    imageSelector: kubernautics:latest
     # Replace the container image with this dev-optimized image (allows to skip image building during development)
     devImage: ghcr.io/loft-sh/devspace-containers/javascript:18-alpine
     # Sync files between the local filesystem and the development container

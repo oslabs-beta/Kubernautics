@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-mongo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app-mongo
+  template:
+    metadata:
+      labels:
+        app: demo-app-mongo
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo:5.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: demo-app-mongo-secret
+              key: mongo-user
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: demo-app-mongo-secret
+              key: mongo-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app-mongo-service
+spec:
+  selector:
+    app: demo-app-mongo
+  ports:
+  - port: 27017
+    targetPort: 27017

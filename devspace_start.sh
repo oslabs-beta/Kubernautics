@@ -34,6 +34,7 @@ This is how you can work with it:
 - Files will be synchronized between your local machine and this container
 - Some ports will be forwarded, so you can access this container via localhost
 - Run \`${COLOR_GREEN}npm run dev${COLOR_RESET}\` to start the application
+- To exit the container, run \`${COLOR_BLUE}exit${COLOR_RESET}\`
 "
 
 # Set terminal prompt

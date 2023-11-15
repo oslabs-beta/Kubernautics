@@ -27,6 +27,11 @@ npm run dev
 ```
 Kubernautics makes use of `webpack-dev-server` and `nodemon` in development mode to pick up changes to the codebase. Once up and running, changes made to the code will be reflected in-cluster.
 
+To leave the container and return your terminal to your local machine's context, simply run --
+```
+exit
+```
+
 ### Tearing Down
 The project can be removed from your minikube cluster, and the cluster itself shut down, by `exit`ing the container shell environment and running --
 ```

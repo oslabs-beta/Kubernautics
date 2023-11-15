@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
 
 const MonitoringComponent = () => {
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/pull', {
+      const response = await fetch('http://localhost:3001/api/pull', {
         method: 'POST',
       });
       const data = await response.json();
@@ -15,10 +14,6 @@ const MonitoringComponent = () => {
   };
   
   fetchData();
-  
-  // useEffect(() => {
-  //   fetchData();
-  // }, []); 
 
   return (
     <div>

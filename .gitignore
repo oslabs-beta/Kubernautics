@@ -1,1 +1,11 @@
+# IDE files
+.vscode/
+
+# nodejs ignores
 node_modules/
+
+# webpack build artifacts
+dist/
+
+# Ignore DevSpace cache and log folder
+.devspace/

@@ -9,12 +9,13 @@ const PORT = process.env.EXPRESS_PORT || 3000;
 // baseline middleware setup
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // application routes
 app.use('/api', dataRoutes);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../src/index.html'));
+  res.status(200).sendFile('/index.html');
 })
 
 

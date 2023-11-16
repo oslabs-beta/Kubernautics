@@ -14,8 +14,7 @@ app.use(express.json());
 // application routes
 app.use('/api', dataRoutes);
 
-app.use('/', (req, res) => {
-  console.log(req)
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../src/index.html'));
 })
 

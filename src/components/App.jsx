@@ -95,15 +95,13 @@ const ChartOne = ({ chartData }) => {
   data={chartData}
   //create code to pull out CPU usage
 
-  newdata=
+
 
   return (
     <div className="pie-chart">
       <Pie
 
         // data={chartData}
-
-
 
 
         options={{

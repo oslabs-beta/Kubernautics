@@ -47,6 +47,10 @@ const MonitoringComponent = () => {
             type: 'category',
           },
           y: {
+            title: {
+              display: true,
+              text: result.data.result[0].metric.__name__,
+            },
             beginAtZero: true,
           },
         },

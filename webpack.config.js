@@ -43,7 +43,7 @@ module.exports = {
 		compress: true,
 		port: 8080,
 		proxy: {
-			'/api/**': 'http://localhost:3000',
+			'/api/**': `http://localhost:${process.env.EXPRESS_PORT}`,
 		}
 	},
 };

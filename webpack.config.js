@@ -39,13 +39,16 @@ module.exports = {
 		})
 	],
 	devServer: {
-		// static: path.join(__dirname, 'dist'),
+		static: {
+			directory: path.join(__dirname, 'dist'),
+		},
 		compress: true,
-		port: 8080,
+		port: 3000,
 		proxy: {
-			'/api/**': 'http://localhost:3000',
+			'/api/**': `http://localhost:${process.env.EXPRESS_PORT}`,
 		}
 	},
+	devtool: 'eval-source-map',
 };
 
 

@@ -46,6 +46,7 @@ module.exports = {
 			'/api/**': `http://localhost:${process.env.EXPRESS_PORT}`,
 		}
 	},
+	devtool: 'eval-source-map',
 };
 
 

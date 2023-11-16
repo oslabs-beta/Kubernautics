@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "cluster": "./scripts/dev_cluster.sh",
-    "dev": "NODE_ENV=development concurrently 'nodemon server/server.js' 'webpack-dev-server --open'",
+    "dev": "NODE_ENV=development EXPRESS_PORT=3010 concurrently 'nodemon server/server.js' 'webpack-dev-server --open'",
     "start": "NODE_ENV=production node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,10 +21,15 @@
   },
   "homepage": "https://github.com/oslabs-beta/kubernautics#readme",
   "dependencies": {
+    "axios": "^1.6.1",
+    "chart.js": "^4.4.0",
     "chartjs": "^0.3.24",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "prom-client": "^15.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",

@@ -1,0 +1,15 @@
+{"level":"info","msg":"dev:app Waiting for pod to become ready...","time":"2023-11-15T16:13:22-05:00"}
+{"level":"warning","msg":"dev:app DevSpace is waiting, because Pod kubernautics-deployment-devspace-56475fd8c4-t8qml has status: ContainerCreating","time":"2023-11-15T16:13:33-05:00"}
+{"level":"warning","msg":"dev:app DevSpace is waiting, because Pod kubernautics-deployment-devspace-56475fd8c4-t8qml has status: ContainerCreating","time":"2023-11-15T16:13:43-05:00"}
+{"level":"warning","msg":"dev:app DevSpace is waiting, because Pod kubernautics-deployment-devspace-56475fd8c4-t8qml has status: ContainerCreating","time":"2023-11-15T16:13:54-05:00"}
+{"level":"warning","msg":"dev:app DevSpace is waiting, because Pod kubernautics-deployment-devspace-56475fd8c4-t8qml has status: ContainerCreating","time":"2023-11-15T16:14:04-05:00"}
+{"level":"info","msg":"dev:app Selected pod kubernautics-deployment-devspace-56475fd8c4-t8qml","time":"2023-11-15T16:14:05-05:00"}
+{"level":"info","msg":"dev:app open  Opening 'http://localhost:3000' as soon as application will be started","time":"2023-11-15T16:14:05-05:00"}
+{"level":"info","msg":"dev:app ports Port forwarding started on: 9229 -\u003e 9229, 3000 -\u003e 3000","time":"2023-11-15T16:14:06-05:00"}
+{"level":"info","msg":"dev:app sync  Sync started on: ./ \u003c-\u003e ./","time":"2023-11-15T16:14:07-05:00"}
+{"level":"info","msg":"dev:app sync  Waiting for initial sync to complete","time":"2023-11-15T16:14:07-05:00"}
+{"level":"info","msg":"dev:app sync  Initial sync completed","time":"2023-11-15T16:14:12-05:00"}
+{"level":"info","msg":"dev:app ssh   Port forwarding started on: 11256 -\u003e 8022","time":"2023-11-15T16:14:12-05:00"}
+{"level":"info","msg":"dev:app proxy Port forwarding started on: 11980 \u003c- 10567","time":"2023-11-15T16:14:14-05:00"}
+{"level":"info","msg":"dev:app ssh   Use 'ssh app.kubernauticsgit.devspace' to connect via SSH","time":"2023-11-15T16:14:14-05:00"}
+{"level":"info","msg":"dev:app term  Opening shell to kubernautics:kubernautics-deployment-devspace-56475fd8c4-t8qml (pod:container)","time":"2023-11-15T16:14:15-05:00"}

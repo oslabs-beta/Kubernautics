@@ -68,7 +68,7 @@ html{
 }
 
 
-.charts{
+.Charts{
 
     //border
     border: 10px solid rgb(138, 136, 136);
@@ -81,64 +81,51 @@ html{
     bottom: 0px;
 
 
-    //display
+    // //display
+    // display: relative;
+    // justify-content: center;
     display: inline-flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+
  
 
-  
-
-  
-
-
-    #ChartOne{
+    .pie-chart{
 
         //border
-        border: 5px solid rgb(231, 229, 229);
+        // border: 5px solid rgb(231, 229, 229);
     
         //size and location
         width: 25%;
-        margin-top:15%;
-        margin-left: 0%;
+        margin-top:5%;
+        // margin-left: 0%;
         height: 680px;
-    
-    }
-    
-    
-    #ChartTwo{
-    
-        //border
-        border: 5px solid rgb(231, 229, 229);
-    
-        //size and location
-        width: 25%;
-        margin-top: 15%;
-        height: 680px;
-    
-    
 
+        // display: relative;
+        // justify-content: center;
     
     }
-    
+}
 
-    #ChartThree {
-    
-        //border
-        border: 5px solid rgb(231, 229, 229);
-    
-        //size and location
-        width: 25%;
-        margin-top:15%;
-        height: 680px;
-        margin-right: 10%;
-      
-      
-    
-     
-    
-    }
+
+#bar-chart{
+
+    //border
+    border: 5px solid rgb(231, 229, 229);
+
+    //size and location
+    width: 25%;
+    margin-top:5%;
+    // margin-left: 0%;
+    height: 480px;
+
+    // display: relative;
+    // justify-content: center;
 
 }
+
+    
+   
+
 
 .header h2 {
     position: absolute;

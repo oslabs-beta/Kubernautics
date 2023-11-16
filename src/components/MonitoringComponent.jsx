@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const MonitoringComponent = () => {
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/pull', {
+      const response = await fetch('/api/pull)', {
         method: 'POST',
       });
       const data = await response.json();

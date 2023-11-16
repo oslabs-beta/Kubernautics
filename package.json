@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "cluster": "./scripts/dev_cluster.sh",
-    "dev": "NODE_ENV=development concurrently 'nodemon server/server.js' 'webpack-dev-server --open'",
+    "dev": "NODE_ENV=development EXPRESS_PORT=3010 concurrently 'nodemon server/server.js' 'webpack-dev-server --open'",
     "start": "NODE_ENV=production node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

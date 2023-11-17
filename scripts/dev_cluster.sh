@@ -64,9 +64,9 @@ if [ $1 == 'up' ]; then
     fi
 
     # start the minikube cluster if it's not already running
-    minikube status > /dev/null
-    if [ $? -gt 0 ]; then
-        minikube start
+    if ! cluster_is_running; then
+        echo "==> Starting up the minikube cluster..."
+        minikube start -p $MINIKUBE_PROFILE
     fi
     
     # start up the devspace dev environment in a project-specific k8s namespace

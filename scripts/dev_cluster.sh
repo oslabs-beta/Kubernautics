@@ -15,6 +15,17 @@
 # The script presumes minikube and devspace are is installed on the machine,
 # and will fail if those programs can't be found.
 
+MINIKUBE_PROFILE=kubernautics
+
+profile_exists() {
+    profile_match=$(minikube profile list | cut -d "|" -f 2 | grep -E "^\s$MINIKUBE_PROFILE\s$" | wc -l)
+    if [ $profile_match -eq 0 ]; then
+        return 1 # profile doesn't exist
+    else
+        return 0 # profile exists
+    fi
+}
+
 cluster_is_running() {
     minikube status > /dev/null
     return $?

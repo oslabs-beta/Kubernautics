@@ -73,16 +73,17 @@ if [ $1 == 'up' ]; then
     devspace use namespace kubernautics-dev
     devspace dev
 elif [ $1 == 'down' ]; then
-    # reset changes devspace made to pods in the cluster
-    devspace reset pods
-    # remove any deployments made by devspace
-    devspace purge
-    # reset any variables being set by devspace
-    devspace reset vars
-    # stop the minikube cluster if it's running
-    minikube status > /dev/null
-    if [ $? -eq 0 ]; then
-        minikube stop
+    # ensure the project's cluster is still present
+    if profile_exists; then
+        echo "==> Ensuring $MINIKUBE_PROFILE is the active minikube profile..."
+        minikube profile $MINIKUBE_PROFILE
+        if cluster_is_running; then
+            echo "==> Shutting down the minikube cluster..."
+            minikube stop -p $MINIKUBE_PROFILE
+        fi
+    else
+        echo "==> The $MINIKUBE_PROFILE cluster seems to not exist. If it"
+        echo "    is still running, you may need to shut it down manually."
     fi
 fi
 

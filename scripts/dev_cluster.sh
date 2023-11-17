@@ -15,6 +15,11 @@
 # The script presumes minikube and devspace are is installed on the machine,
 # and will fail if those programs can't be found.
 
+cluster_is_running() {
+    minikube status > /dev/null
+    return $?
+}
+
 # check that required input is present
 if [ "$1" != "up" ] && [ "$1" != "down" ]; then
     # provide usage guidance to the user and exit

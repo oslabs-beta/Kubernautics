@@ -9,7 +9,7 @@ dataController.getData = async (req, res, next) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'query=container_cpu_usage_seconds_total{pod="demo-app-mongo-deployment-9fb67bcd-zf27g"}[20m]',
+        body: 'query=container_cpu_usage_seconds_total{namespace="kubernautics-dev"}[20m]',
       }
     );
     res.locals.metric = await response.json();

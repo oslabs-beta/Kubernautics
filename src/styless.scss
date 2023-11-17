@@ -1,149 +1,144 @@
+html {
+  //background
+  background-image: url(../assets/images/ocean.jpg);
+  background-size: cover;
+  background-color: rgb(249, 248, 248);
 
-
-html{
-
-    //background
-    background-image: url(./ocean.jpg);
-    background-size: cover;
-
-    //text
-    text-align: center;
-
-   
+  //text
+  text-align: center;
 }
 
-#main{
+#main {
+  //size
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
 
-    //size
-    position: absolute;
-    top: 55px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
+  //text
+  text-align: center;
+  color: white;
+  padding-top: 90px;
 
-    //text
-    text-align: center;
-    color: white;
-    padding-top: 90px;
-
+  //background
 }
 
-.navBar{
+.navBar {
+  //location
+  position: absolute;
+  top: 9px;
+  left: 0px;
+  right: 0px;
+  height: 60px;
 
-    //location
-    position: absolute;
-    top: 9px;
-    left: 0px;
-    right: 0px;
-    height: 70px;
+  //background
+  background: #121212;
 
+  //text
+  font-family: Verdana;
+  font-size: 25px;
+  color: #070707;
+  text-align: right;
 
-    //background
-    background: #121212;
+  //links
+  li {
+    display: inline;
+  }
 
-    //text
-    font-family: Verdana;
-    font-size: 35px;
-    color: #CDCDCD;
-    text-align: right;
-    
+  //linkstyling
+  a {
+    color: #cdcdcd;
 
-    //links
-    li{
-        display: inline;
-      
+    text-decoration: none;
+    padding: 14px 24px;
+    &:hover {
+      text-decoration: underline;
     }
-
-        //linkstyling
-        a {
-            color: #CDCDCD;
-            
-            text-decoration: none;
-                padding: 14px 24px;
-            &:hover {
-            text-decoration: underline;
-            }
-        }
-
+  }
 }
 
+#charts {
+  border: 10px solid rgb(138, 136, 137);
 
-.Charts{
+  //size
+  position: absolute;
+  top: 250px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
 
-    //border
-    border: 10px solid rgb(138, 136, 136);
+  color: white;
 
-    //size
-    position: absolute;
-    top: 200px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
+  //   width: 55%;
+  //   margin-top: 10%;
+  //   // margin-left: 0%;
+  //   height: 300px;
 
+  // //display
+  // display: relative;
+  // justify-content: center;
+  display: inline-flex;
+  justify-content: space-evenly;
 
-    // //display
-    // display: relative;
-    // justify-content: center;
-    display: inline-flex;
-    justify-content: space-evenly;
-
- 
-
-    .pie-chart{
-
-        //border
-        // border: 5px solid rgb(231, 229, 229);
-    
-        //size and location
-        width: 25%;
-        margin-top:5%;
-        // margin-left: 0%;
-        height: 680px;
-
-        // display: relative;
-        // justify-content: center;
-    
-    }
+  background-color: rgb(49, 49, 50);
+  //   opacity: 0.5;
 }
 
+// #monitor {
+//   //border
+//   border: 10px solid rgb(138, 136, 137);
 
-#bar-chart{
+//   //size
+//   position: absolute;
+//   top: 250px;
+//   right: 0px;
+//   left: 0px;
+//   bottom: 0px;
 
-    //border
-    border: 5px solid rgb(231, 229, 229);
+// width: 55%;
+// margin-top: 10%;
+// // margin-left: 0%;
+// height: 300px;
 
-    //size and location
-    width: 25%;
-    margin-top:5%;
-    // margin-left: 0%;
-    height: 480px;
+//   // //display
+//   // display: relative;
+//   // justify-content: center;
+//   display: inline-flex;
+//   justify-content: space-evenly;
 
-    // display: relative;
-    // justify-content: center;
+//   background-color: white;
+// }
 
+#monitor {
+  //border
+  // border: 5px solid rgb(231, 229, 229);
+
+  //size and location
+  position: relative;
+  width: 55%;
+  margin-top: 5%;
+  // margin-left: 0%;
+  height: 80%;
+
+  background-color: white;
+  color: black;
+
+  // display: relative;
+  // justify-content: center;
 }
 
-    
-   
-
-
-.header h2 {
-    position: absolute;
-    top: 20px;
-    margin-left: 70px;
-    font-size: 40px;
-}
-
-
-
-
-
-
+// .header h2 {
+//   position: absolute;
+//   top: 20px;
+//   margin-left: 70px;
+//   font-size: 40px;
+// }
 
 #myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%; 
-    min-height: 100%;
-  }
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}

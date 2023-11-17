@@ -70,70 +70,24 @@ html {
 
   color: white;
 
-  //   width: 55%;
-  //   margin-top: 10%;
-  //   // margin-left: 0%;
-  //   height: 300px;
-
   // //display
-  // display: relative;
-  // justify-content: center;
   display: inline-flex;
   justify-content: space-evenly;
 
   background-color: rgb(49, 49, 50);
-  //   opacity: 0.5;
 }
 
-// #monitor {
-//   //border
-//   border: 10px solid rgb(138, 136, 137);
-
-//   //size
-//   position: absolute;
-//   top: 250px;
-//   right: 0px;
-//   left: 0px;
-//   bottom: 0px;
-
-// width: 55%;
-// margin-top: 10%;
-// // margin-left: 0%;
-// height: 300px;
-
-//   // //display
-//   // display: relative;
-//   // justify-content: center;
-//   display: inline-flex;
-//   justify-content: space-evenly;
-
-//   background-color: white;
-// }
-
 #monitor {
-  //border
-  // border: 5px solid rgb(231, 229, 229);
-
   //size and location
   position: relative;
   width: 55%;
   margin-top: 5%;
-  // margin-left: 0%;
+
   height: 80%;
 
   background-color: white;
   color: black;
-
-  // display: relative;
-  // justify-content: center;
 }
-
-// .header h2 {
-//   position: absolute;
-//   top: 20px;
-//   margin-left: 70px;
-//   font-size: 40px;
-// }
 
 #myVideo {
   position: fixed;

@@ -55,6 +55,14 @@ fi
 
 # bring cluster environment up or down
 if [ $1 == 'up' ]; then
+    # check if project's minikube profile exists
+    if profile_exists; then
+        echo "==> Switching the active minikube profile to '$MINIKUBE_PROFILE'..."
+        minikube profile $MINIKUBE_PROFILE
+    else
+        echo "==> minikube profile '$MINIKUBE_PROFILE' doesn't yet exist. Will create."
+    fi
+
     # start the minikube cluster if it's not already running
     minikube status > /dev/null
     if [ $? -gt 0 ]; then

@@ -60,6 +60,9 @@ const MonitoringComponent = () => {
             display: true,
           },
         },
+        elements: {
+          backgroundColor: 'rgba(50, 50, 200, 80)',
+        },
       };
       setLineData(lineData);
       setOptions(options);
@@ -77,8 +80,8 @@ const MonitoringComponent = () => {
   //Line graph doesn't render until lineData and options both exist
   //delayed rendering
   return (
-    <div>
-      <h1>Monitoring Component</h1>
+    <div id='monitor'>
+      <h1>Container CPU-Usage</h1>
       {lineData && options && <Line data={lineData} options={options} />}
     </div>
   );

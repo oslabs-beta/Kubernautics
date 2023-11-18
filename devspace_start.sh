@@ -18,21 +18,20 @@ COLOR_RESET="\033[0m"
 
 # Print useful output for user
 echo -e "${COLOR_BLUE}
-     %########%      
-     %###########%       ____                 _____                      
-         %#########%    |  _ \   ___ __   __ / ___/  ____    ____   ____ ___ 
-         %#########%    | | | | / _ \\\\\ \ / / \___ \ |  _ \  / _  | / __// _ \\
-     %#############%    | |_| |(  __/ \ V /  ____) )| |_) )( (_| |( (__(  __/
-     %#############%    |____/  \___|  \_/   \____/ |  __/  \__,_| \___\\\\\___|
- %###############%                                  |_|
- %###########%${COLOR_RESET}
+  _          _                                 _   _            
+ | |        | |                               | | (_)           
+ | | ___   _| |__   ___ _ __ _ __   __ _ _   _| |_ _  ___ ___   
+ | |/ / | | | '_ \ / _ \ '__| '_ \ / _\` | | | | __| |/ __/ __|  
+ |   <| |_| | |_) |  __/ |  | | | | (_| | |_| | |_| | (__\__ \_ 
+ |_|\_\\\\__,_|_.__/ \___|_|  |_| |_|\__,_|\__,_|\__|_|\___|___(_)
+${COLOR_RESET}"
 
 
-Welcome to your development container!
+echo -e "Welcome to the Kubernautics development container!
 
 This is how you can work with it:
-- Files will be synchronized between your local machine and this container
-- Some ports will be forwarded, so you can access this container via localhost
+- Project files will be synchronized between your local machine and this container
+- The kubernautics dashboard is exposed at http://localhost:3000
 - Run \`${COLOR_GREEN}npm run dev${COLOR_RESET}\` to start the application
 - To exit the container, run \`${COLOR_BLUE}exit${COLOR_RESET}\`
 "

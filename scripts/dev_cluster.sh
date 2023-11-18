@@ -15,6 +15,22 @@
 # The script presumes minikube and devspace are is installed on the machine,
 # and will fail if those programs can't be found.
 
+MINIKUBE_PROFILE=kubernautics
+
+profile_exists() {
+    profile_match=$(minikube profile list | cut -d "|" -f 2 | grep -E "^\s$MINIKUBE_PROFILE\s$" | wc -l)
+    if [ $profile_match -eq 0 ]; then
+        return 1 # profile doesn't exist
+    else
+        return 0 # profile exists
+    fi
+}
+
+cluster_is_running() {
+    minikube status > /dev/null
+    return $?
+}
+
 # check that required input is present
 if [ "$1" != "up" ] && [ "$1" != "down" ]; then
     # provide usage guidance to the user and exit
@@ -39,26 +55,35 @@ fi
 
 # bring cluster environment up or down
 if [ $1 == 'up' ]; then
+    # check if project's minikube profile exists
+    if profile_exists; then
+        echo "==> Switching the active minikube profile to '$MINIKUBE_PROFILE'..."
+        minikube profile $MINIKUBE_PROFILE
+    else
+        echo "==> minikube profile '$MINIKUBE_PROFILE' doesn't yet exist. Will create."
+    fi
+
     # start the minikube cluster if it's not already running
-    minikube status > /dev/null
-    if [ $? -gt 0 ]; then
-        minikube start
+    if ! cluster_is_running; then
+        echo "==> Starting up the minikube cluster..."
+        minikube start -p $MINIKUBE_PROFILE
     fi
     
     # start up the devspace dev environment in a project-specific k8s namespace
     devspace use namespace kubernautics-dev
     devspace dev
 elif [ $1 == 'down' ]; then
-    # reset changes devspace made to pods in the cluster
-    devspace reset pods
-    # remove any deployments made by devspace
-    devspace purge
-    # reset any variables being set by devspace
-    devspace reset vars
-    # stop the minikube cluster if it's running
-    minikube status > /dev/null
-    if [ $? -eq 0 ]; then
-        minikube stop
+    # ensure the project's cluster is still present
+    if profile_exists; then
+        echo "==> Ensuring $MINIKUBE_PROFILE is the active minikube profile..."
+        minikube profile $MINIKUBE_PROFILE
+        if cluster_is_running; then
+            echo "==> Shutting down the minikube cluster..."
+            minikube stop -p $MINIKUBE_PROFILE
+        fi
+    else
+        echo "==> The $MINIKUBE_PROFILE cluster seems to not exist. If it"
+        echo "    is still running, you may need to shut it down manually."
     fi
 fi
 

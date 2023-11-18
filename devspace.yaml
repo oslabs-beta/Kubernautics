@@ -74,6 +74,8 @@ dev:
       - command: devspace
       - command: kubectl
       - command: helm
+      - command: docker
+      - command: minikube
       - gitCredentials: true
     # Forward the following ports to be able access your application via localhost
     ports:

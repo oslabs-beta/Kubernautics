@@ -26,7 +26,7 @@ images:
     image: kubernautics
     dockerfile: ./Dockerfile
     tags:
-    - latest
+      - latest
 
 # This is a list of `deployments` that DevSpace can create for this project
 deployments:
@@ -51,7 +51,7 @@ dev:
   prometheus:
     imageSelector: quay.io/prometheus/prometheus
     ports:
-      - port: "9090"
+      - port: '9090'
   kubernautics:
     # Search for the container that runs this image
     imageSelector: kubernautics:latest
@@ -77,13 +77,13 @@ dev:
       - gitCredentials: true
     # Forward the following ports to be able access your application via localhost
     ports:
-      - port: "9229"
-      - port: "3000"
+      - port: '9229'
+      - port: '3000'
     # Open the following URLs once they return an HTTP status code other than 502 or 503
     open:
       - url: http://localhost:3000
 
-# Use the `commands` section to define repeatable dev workflows for this project 
+# Use the `commands` section to define repeatable dev workflows for this project
 commands:
   migrate-db:
     command: |-

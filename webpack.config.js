@@ -21,17 +21,13 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.s[ac]ss$/,
+				test: /\.scss$/,
 				use: ['style-loader', 'css-loader', 'sass-loader']
-			},
-			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
 			},
 		]
 	},
   resolve: {
-		extensions: ['.*', '.js', '.jsx']
+		extensions: ['.*', '.js', '.jsx', '.scss', '.sass']
 	},
 	plugins: [
 		new htmlWebpackPlugin({

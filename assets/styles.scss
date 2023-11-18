@@ -1,0 +1,98 @@
+html {
+  //background
+  background-image: url(../assets/images/ocean.jpg);
+  background-size: cover;
+  background-color: rgb(249, 248, 248);
+
+  //text
+  text-align: center;
+}
+
+#main {
+  //size
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+
+  //text
+  text-align: center;
+  color: white;
+  padding-top: 90px;
+
+  //background
+}
+
+.navBar {
+  //location
+  position: absolute;
+  top: 9px;
+  left: 0px;
+  right: 0px;
+  height: 60px;
+
+  //background
+  background: #121212;
+
+  //text
+  font-family: Verdana;
+  font-size: 25px;
+  color: #070707;
+  text-align: right;
+
+  //links
+  li {
+    display: inline;
+  }
+
+  //linkstyling
+  a {
+    color: #cdcdcd;
+
+    text-decoration: none;
+    padding: 14px 24px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#charts {
+  border: 10px solid rgb(138, 136, 137);
+
+  //size
+  position: absolute;
+  top: 250px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+
+  color: white;
+
+  // //display
+  display: inline-flex;
+  justify-content: space-evenly;
+
+  background-color: rgb(49, 49, 50);
+}
+
+#monitor {
+  //size and location
+  position: relative;
+  width: 55%;
+  margin-top: 5%;
+
+  height: 80%;
+
+  background-color: white;
+  color: black;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}

@@ -8,6 +8,19 @@ html {
   text-align: center;
 }
 
+.logo {
+  width: 52px;
+  length: 52px;
+  top: 9px;
+}
+
+.brand {
+  position: absolute;
+  //play w/ font type
+  left: 5px;
+  top: 9px;
+  color: white;
+}
 #main {
   //size
   position: absolute;

@@ -1,6 +1,8 @@
+@use 'dashboard';
+
 html {
   //background
-  background-image: url(../assets/images/ocean.jpg);
+  background-image: url(../images/ocean.jpg);
   background-size: cover;
   background-color: rgb(249, 248, 248);
 
@@ -12,22 +14,6 @@ html {
 
 body {
   margin: 0;
-}
-
-#main {
-  //size
-  position: absolute;
-  top: 50px;
-  right: 0px;
-  left: 0px;
-  bottom: 0px;
-
-  //text
-  text-align: center;
-  color: white;
-  padding-top: 90px;
-
-  //background
 }
 
 // this element wraps our entire application; rules here are
@@ -72,37 +58,6 @@ header.navBar {
       }
     }
   }
-}
-
-#charts {
-  border: 10px solid #8a8889;
-
-  //size
-  position: absolute;
-  top: 250px;
-  right: 0px;
-  left: 0px;
-  bottom: 0px;
-
-  color: white;
-
-  // //display
-  display: inline-flex;
-  justify-content: space-evenly;
-
-  background-color: #313132;
-}
-
-#monitor {
-  //size and location
-  position: relative;
-  width: 55%;
-  margin-top: 5%;
-
-  height: 80%;
-
-  background-color: #ffffff;
-  color: #000000;
 }
 
 #myVideo {

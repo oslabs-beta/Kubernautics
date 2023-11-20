@@ -1,0 +1,23 @@
+#dashboard {
+    padding: 1rem;
+    display: flex;
+
+    //text
+    text-align: center;
+    color: white;
+
+    #monitor {
+        background-color: #fcfcfc;
+        border-radius: .66rem;
+        color: #141414;
+        padding: 1rem;
+
+        flex-grow: 1;
+        flex-shrink: 1;
+        max-width: 94vw;
+
+        h2 {
+            margin: 0;
+        }
+      }
+}

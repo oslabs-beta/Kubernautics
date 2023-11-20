@@ -12,9 +12,7 @@ const MonitoringComponent = () => {
         method: 'POST',
       });
       const result = await response.json();
-      console.log('Data from server:', result);
-      console.log(typeof result.data.result[0].metric.pod);
-      console.log(result.data.result[0].metric.pod);
+      // console.log('Data from server:', result.data);
       let timestamps = [];
       let datalabels = [];
       for (let i = 0; i < result.data.result[0].values.length; i++) {

@@ -1,17 +1,25 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import nautics from '../../assets/images/nautics';
 const NavBar = (props) => {
   return (
-    <div className='navBar'>
-      <li></li>
-      {/* <li><a href="#">Change Table</a></li> */}
-      <li>
-        <a href='#'>Log Out</a>
-      </li>
-      <li>
-        <a href='#'>Menu</a>
-      </li>
-    </div>
+    <nav className='navBar'>
+      <ul>
+        <li className='brand'>
+          <img src={nautics} className='logo' /> Kubernautics
+        </li>
+
+        <li>
+          <Link to='/'>Home</Link>
+        </li>
+        <li>
+          <Link to='/addMetric'>Add Metric</Link>
+        </li>
+        <li>
+          <Link to='/clusterVisualizer'>Visualizer</Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

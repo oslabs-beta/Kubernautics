@@ -1,11 +1,10 @@
-import ChartContainer from './ChartContainer';
 import React from 'react';
+import MonitoringComponent from './MonitoringComponent';
 
 const Dashboard = (props) => {
   return (
     <div id='main'>
-      <h1>Kubernautics</h1>
-      <ChartContainer />
+      <MonitoringComponent />
     </div>
   );
 };

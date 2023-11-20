@@ -3,7 +3,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './src/index.html',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -24,10 +24,14 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   resolve: {
-    extensions: ['.*', '.js', '.jsx', '.scss', '.sass'],
+    extensions: ['.*', '.js', '.jsx', '.scss', '.sass', '.png'],
   },
   plugins: [
     new htmlWebpackPlugin({

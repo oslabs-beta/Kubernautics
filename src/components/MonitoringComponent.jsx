@@ -82,7 +82,7 @@ const MonitoringComponent = () => {
   //delayed rendering
   return (
     <div id='monitor'>
-      <h1>Container CPU-Usage</h1>
+      <h2>Container CPU-Usage</h2>
       {lineData && options && <Line data={lineData} options={options} />}
     </div>
   );

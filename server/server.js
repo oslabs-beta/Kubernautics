@@ -13,9 +13,9 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 // application routes
 app.use('/api', dataRoutes);
-
+// app.use('/addMetric', metricRoutes)
 app.get('/', (req, res) => {
-  res.status(200).sendFile('/index.html');
+  res.status(200).sendFile('src/components/pages/Dashboard/index.html');
 });
 
 app.listen(PORT, () => {

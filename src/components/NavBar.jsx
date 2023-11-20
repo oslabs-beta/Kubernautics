@@ -2,16 +2,13 @@ import React from 'react';
 
 const NavBar = (props) => {
   return (
-    <div className='navBar'>
-      <li></li>
-      {/* <li><a href="#">Change Table</a></li> */}
-      <li>
-        <a href='#'>Log Out</a>
-      </li>
-      <li>
-        <a href='#'>Menu</a>
-      </li>
-    </div>
+    <header className='navBar'>
+      <h1>Kubernautics</h1>
+      <nav>
+        <li><a href='#'>Cluster Map</a></li>
+        <li><a href='#'>Dashboard</a></li>
+      </nav>
+    </header>
   );
 };
 

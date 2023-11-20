@@ -3,7 +3,7 @@ import MonitoringComponent from './MonitoringComponent';
 
 const Dashboard = (props) => {
   return (
-    <div id='main'>
+    <div id='dashboard'>
       <MonitoringComponent />
     </div>
   );

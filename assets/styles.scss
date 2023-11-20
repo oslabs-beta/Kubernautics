@@ -5,7 +5,13 @@ html {
   background-color: rgb(249, 248, 248);
 
   //text
+  font-family: Verdana;
+  font-size: 16px;
   text-align: center;
+}
+
+body {
+  margin: 0;
 }
 
 #main {
@@ -24,42 +30,52 @@ html {
   //background
 }
 
-.navBar {
-  //location
-  position: absolute;
-  top: 9px;
-  left: 0px;
-  right: 0px;
-  height: 60px;
+// this element wraps our entire application; rules here are
+// for laying out the highest-level components relative to one
+// another (e.g., the navbar relative to the rest of the app below it).
+div#application {
+  display: flex;
+  flex-direction: column;
+}
 
-  //background
-  background: #121212;
+header.navBar {
+  background: #141414;
+  color: #fafafa;
+  padding: 1rem;
 
-  //text
-  font-family: Verdana;
-  font-size: 25px;
-  color: #070707;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
 
-  //links
-  li {
-    display: inline;
+  // main app title
+  h1 {
+    font-size: 1.4rem;
+    margin: 0;
   }
 
-  //linkstyling
-  a {
-    color: #cdcdcd;
+  nav {
+    display: flex;
+    align-items: center;
 
-    text-decoration: none;
-    padding: 14px 24px;
-    &:hover {
-      text-decoration: underline;
+    // links
+    li {
+      display: inline;
+      margin: 0 1rem;
+    }
+  
+    // linkstyling
+    a {
+      color: inherit;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
 
 #charts {
-  border: 10px solid rgb(138, 136, 137);
+  border: 10px solid #8a8889;
 
   //size
   position: absolute;
@@ -74,7 +90,7 @@ html {
   display: inline-flex;
   justify-content: space-evenly;
 
-  background-color: rgb(49, 49, 50);
+  background-color: #313132;
 }
 
 #monitor {
@@ -85,8 +101,8 @@ html {
 
   height: 80%;
 
-  background-color: white;
-  color: black;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 #myVideo {

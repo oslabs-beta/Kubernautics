@@ -1,14 +1,14 @@
 import React from 'react';
 import NavBar from './NavBar';
-import Main from './Main';
+import Dashboard from './Dashboard';
 
 //effectively will be our home page
 
 function App() {
   return (
     <div id='application'>
-      <Main />
       <NavBar />
+      <Dashboard />
     </div>
   );
 }

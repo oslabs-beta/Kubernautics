@@ -1,7 +1,7 @@
 import ChartContainer from './ChartContainer';
 import React from 'react';
 
-const Main = (props) => {
+const Dashboard = (props) => {
   return (
     <div id='main'>
       <h1>Kubernautics</h1>
@@ -10,4 +10,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export default Dashboard;

@@ -1,6 +1,7 @@
 #dashboard {
     padding: 1rem;
     display: flex;
+    flex-wrap: wrap;
 
     //text
     text-align: center;
@@ -11,13 +12,13 @@
         border-radius: .66rem;
         color: #141414;
         padding: 1rem;
-
+        margin: 1rem;
+        flex-basis: 50%;
         flex-grow: 1;
         flex-shrink: 1;
-        max-width: 94vw;
 
         h2 {
             margin: 0;
         }
-      }
+    }
 }

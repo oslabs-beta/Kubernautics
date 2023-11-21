@@ -1,12 +1,20 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import nautics from '../../assets/images/nautics';
 const NavBar = (props) => {
   return (
     <header className='navBar'>
-      <h1>Kubernautics</h1>
+      <div className='brand'>
+        <img src={nautics} className='logo' />
+        <h1>Kubernautics</h1>
+      </div>
+
       <nav>
-        <li><a href='#'>Cluster Map</a></li>
-        <li><a href='#'>Dashboard</a></li>
+        <ul>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/addMetric'>Add Metric</Link></li>
+          <li><Link to='/clusterVisualizer'>Visualizer</Link></li>
+        </ul>
       </nav>
     </header>
   );

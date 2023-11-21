@@ -33,6 +33,20 @@ header.navBar {
   justify-content: space-between;
 
   // main app title
+  .logo {
+    width: 52px;
+    length: 52px;
+    top: 9px;
+  }
+  
+  .brand {
+    position: absolute;
+    //play w/ font type
+    left: 5px;
+    top: 9px;
+    color: white;
+  }
+  
   h1 {
     font-size: 1.4rem;
     margin: 0;

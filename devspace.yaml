@@ -41,7 +41,6 @@ deployments:
       manifests:
         - k8s/demo-app/**
   kubernautics:
-    # This deployment uses `kubectl` but you can also define `helm` deployments
     kubectl:
       manifests:
         - k8s/kubernautics/**

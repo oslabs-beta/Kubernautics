@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import nautics from '../../assets/images/nautics';
+
 const NavBar = (props) => {
   return (
     <header className='navBar'>

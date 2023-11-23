@@ -7,9 +7,11 @@ import {
   Select,
   MenuItem,
   Autocomplete,
+  Button,
 } from '@mui/material';
 
 const DropDownMenu = () => {
+  const [buttonStatus, setButtonStatus] = useState(true);
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedTimeRange, setSelectedTimeRange] = useState('');
   const [selectedStepSize, setSelectedStepSize] = useState('');
@@ -81,6 +83,7 @@ const DropDownMenu = () => {
           value={selectedTask}
           onChange={(e) => {
             const searchTask = e.target.value;
+            setButtonStatus(false);
             setSelectedTask(searchTask);
           }}
           label='Select an option'
@@ -121,6 +124,14 @@ const DropDownMenu = () => {
           {ddStepSizes}
         </Select>
       </FormControl>
+
+      <Button
+        variant='contained'
+        disabled={buttonStatus}
+        onClick={() => console.log('hello')}
+      >
+        Create Chart
+      </Button>
     </div>
   );
 };

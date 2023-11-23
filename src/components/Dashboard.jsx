@@ -5,6 +5,9 @@ const Dashboard = (props) => {
   return (
     <div id='dashboard'>
       <MonitoringComponent />
+      <MonitoringComponent />
+      <MonitoringComponent />
+      <MonitoringComponent />
     </div>
   );
 };

@@ -1,7 +1,9 @@
 #dashboard {
     padding: 1rem;
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
+    justify-content: space-around;
 
     //text
     text-align: center;
@@ -12,13 +14,14 @@
         border-radius: .66rem;
         color: #141414;
         padding: 1rem;
-        margin: 1rem;
-        flex-basis: 50%;
+        margin: 1rem 1rem 0 0;
+        max-width: 600px;
+        min-width: 400px;
         flex-grow: 1;
         flex-shrink: 1;
 
         h2 {
-            margin: 0;
+            margin: 0 0 .5rem 0;
         }
     }
 }

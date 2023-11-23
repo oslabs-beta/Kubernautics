@@ -34,23 +34,21 @@ header.navBar {
 
   // main app title
   .logo {
-    width: 52px;
-    length: 52px;
+    width: 68px;
+    height: 52px;
     top: 9px;
   }
   
   .brand {
-    position: absolute;
-    //play w/ font type
-    left: 5px;
-    top: 9px;
-    color: white;
+    display: flex;
+    align-items: center;
+
+    h1 {
+      font-size: 1.4rem;
+      margin: 0;
+    }
   }
   
-  h1 {
-    font-size: 1.4rem;
-    margin: 0;
-  }
 
   nav {
     display: flex;

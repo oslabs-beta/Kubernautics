@@ -81,7 +81,7 @@ const MonitoringComponent = () => {
   //Line graph doesn't render until lineData and options both exist
   //delayed rendering
   return (
-    <div class='monitor'>
+    <div className='monitor'>
       <h2>Container CPU-Usage</h2>
       {lineData && options && <Line data={lineData} options={options} />}
     </div>

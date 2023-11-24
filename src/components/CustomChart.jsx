@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import actions from './action';
 
-const DropDownMenu = () => {
+const DropDownMenu = (props) => {
   const [buttonStatus, setButtonStatus] = useState(true);
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedTimeRange, setSelectedTimeRange] = useState('');
@@ -110,7 +110,6 @@ const DropDownMenu = () => {
         ></Autocomplete>
       </FormControl> */}
           <p>Selected Value: {selectedTask}</p>
-
           <FormControl fullWidth>
             <InputLabel id='timeRange'>Set a time range</InputLabel>
             <Select
@@ -125,7 +124,6 @@ const DropDownMenu = () => {
               {ddTimeRanges}
             </Select>
           </FormControl>
-
           <FormControl fullWidth>
             <InputLabel id='stepsize'>Set a step size</InputLabel>
             <Select
@@ -145,14 +143,11 @@ const DropDownMenu = () => {
             variant='contained'
             disabled={buttonStatus}
             onClick={() => {
-              // if (!selectedTimeRange && !selectedStepSize) {
-              // }
-              console.log(
+              const newQuery =
                 //this would be a fetch request to the backend passing in the constructed query statement
-                selectedTask +
-                  `[${selectedTimeRange}]` +
-                  `[${selectedStepSize}]`
-              );
+                selectedTask + `[${selectedTimeRange}]`;
+              // + `[${selectedStepSize}]`;
+              props.onSaveToLocalStorage(newQuery);
               setShowForm(false);
             }}
           >
@@ -164,27 +159,10 @@ const DropDownMenu = () => {
   );
 };
 
-// reason to hard code the features present is b/c we are fine tuning on the ones that are important
-// if not we could go to
-//http://localhost:9090/api/v1/label/__name__/values
-//that exposes all the possible search queries but it is a bit excessive
-// do we want all that for end user
-
-//promlabs
-//https://promlabs.com/blog/2020/12/17/promql-queries-for-exploring-your-metrics/
-//https://demo.promlabs.com/api/v1/metadata
-
-//need to work on logic to compile all the state bodies
-//need to send a fetch request to the express server
-//req.body to express server will be redirected over as the promql query
-
-//need to work on logic to check the promql statements
-//counters and gauges dont support range vectors
-//need to check the statements going back
 export const CustomChart = (props) => {
   return (
-    <Container id='charts'>
-      <DropDownMenu />
+    <Container id='ddMenu'>
+      <DropDownMenu onSaveToLocalStorage={props.onSaveToLocalStorage} />
     </Container>
   );
 };

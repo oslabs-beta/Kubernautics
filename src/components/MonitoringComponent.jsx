@@ -56,12 +56,14 @@ const MonitoringComponent = ({ query, range }) => {
       const options = {
         scales: {
           x: {
+            type: 'linear',
             title: {
               display: true,
               text: "Elapsed Time (s)",
             }
           },
           y: {
+            type: 'linear',
             title: {
               display: true,
               text: result.data.result[0].metric.__name__,

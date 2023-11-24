@@ -77,14 +77,13 @@ const MonitoringComponent = ({ query }) => {
     }
   };
 
-  //ensures data is fetched only after components are mount
+  // Ensures data is fetched only after components are mount
   useEffect(() => {
     fetchData();
   }, []);
 
-  //conditional rendering of lineData and options
-  //Line graph doesn't render until lineData and options both exist
-  //delayed rendering
+  // Conditional rendering of lineData and options
+  // Line graph doesn't render until lineData and options both exist
   return (
     <div className='monitor'>
       <h2>Container CPU-Usage</h2>

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MonitoringComponent from './MonitoringComponent';
 
 const Dashboard = (props) => {
+  const [charts, setCharts] = useState(defaultCharts);
+
   return (
     <div id='dashboard'>
-      <MonitoringComponent />
-      <MonitoringComponent />
-      <MonitoringComponent />
-      <MonitoringComponent />
+      {charts.map((chart, i) => {
+        return (<MonitoringComponent
+          key={`chart-${i}`}
+          query={chart.query}
+        />);
+      })}
     </div>
   );
 };

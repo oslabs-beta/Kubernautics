@@ -8,38 +8,42 @@ import {
   MenuItem,
   Autocomplete,
   Button,
+  TextField,
+  Grid,
 } from '@mui/material';
+import actions from './action';
 
 const DropDownMenu = () => {
+  const actionTasks = Object.keys(actions.data);
+  //Provide the possible promql metric look ups, type, and help description
+  const ddActionTasks = [];
+  for (let i = 0; i < actionTasks.length; i++) {
+    ddActionTasks.push(
+      <MenuItem key={actionTasks[i]} value={actionTasks[i]}>
+        <Grid container spacing={8} key={actionTasks[i]} value={actionTasks[i]}>
+          <Grid item xs={4}>
+            {actionTasks[i]}
+          </Grid>
+          <Grid item xs={4}>
+            {actions.data[actionTasks[i]][0].type}
+          </Grid>
+          <Grid item xs={4}>
+            {actions.data[actionTasks[i]][0].help}
+          </Grid>
+        </Grid>
+      </MenuItem>
+    );
+  }
+
   const [buttonStatus, setButtonStatus] = useState(true);
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedTimeRange, setSelectedTimeRange] = useState('');
   const [selectedStepSize, setSelectedStepSize] = useState('');
-  //Provide the possible promql metric look ups
 
-  const promqlOptions = [
-    'node_cpu_seconds_total',
-    'process_cpu_seconds_total',
-    'node_memory_MemTotal_bytes',
-    'node_network_receive_bytes_total',
-    'node_network_transmit_bytes_total',
-    'http_requests_total',
-    'http_request_duration_seconds',
-    'container_cpu_usage_seconds_total',
-    'container_memory_usage_bytes',
-    'container_network_receive_bytes_total',
-  ];
-
-  //options for collection time in dropdown
+  //Options for collection time in dropdown
   const timeranges = ['1h', '2h', '4h', '6h', '12h', '24h'];
-  //options for data step intervals in dropdown
+  //Options for data step intervals in dropdown
   const stepsizes = ['10s', '15s', '30s', '60s', '120s', '300s'];
-
-  const ddMenu = promqlOptions.map((option) => (
-    <MenuItem key={option} value={option}>
-      {option}
-    </MenuItem>
-  ));
 
   const ddTimeRanges = timeranges.map((range) => (
     <MenuItem key={range} value={range}>
@@ -53,46 +57,49 @@ const DropDownMenu = () => {
     </MenuItem>
   ));
 
-  // for (let i = 0; i < promqlOptions.length; i++) {
-  //   ddMenu.push(
-  //     <MenuItem value={`${promqlOptions[i]}`}>{`${promqlOptions[i]}`}</MenuItem>
-  //   );
-  // }
-  // for (let i = 0; i < timeranges.length; i++) {
-  //   ddTimeRanges.push(
-  //     <MenuItem
-  //       key={`${timeranges[i]}`}
-  //       value={`${timeranges[i]}`}
-  //     >{`${timeranges[i]}`}</MenuItem>
-  //   );
-  //   ddStepSizes.push(
-  //     <MenuItem
-  //       key={`${stepsizes[i]}`}
-  //       value={`${stepsizes[i]}`}
-  //     >{`${stepsizes[i]}`}</MenuItem>
-  //   );
-  // }
-
-  //form control has a scroll if there is too many options
+  //Form control has a scroll if there is too many options
   return (
     <div>
       <FormControl fullWidth>
-        <InputLabel id='dropdown-label'>Search for an Expression</InputLabel>
+        <InputLabel id='timeRange'>Select a Query</InputLabel>
         <Select
-          id='dropdown'
+          id='taskname'
           value={selectedTask}
           onChange={(e) => {
-            const searchTask = e.target.value;
             setButtonStatus(false);
-            setSelectedTask(searchTask);
+            const taskname = e.target.value;
+            setSelectedTask(taskname);
           }}
           label='Select an option'
+          MenuProps={{
+            PaperProps: {
+              style: {
+                maxHeight: 180, // Set the maximum height of the dropdown menu
+              },
+            },
+          }}
         >
-          {ddMenu}
+          {ddActionTasks}
         </Select>
       </FormControl>
 
-      {/* Display the selected value */}
+      {/* <FormControl>
+        <Autocomplete
+          disablePortal
+          id='task-dropdown'
+          options={ddActionTasks}
+          sx={{ width: 300 }}
+          // getOptionLabel={(options) => ''}
+          // onChange={(e) => {
+          //   // only when query selected can we create a chart. HAVING ISSUES WITH THIS. W/ THE CURRENT HELP INFORMATION, UNABLE TO MAKE THIS INTO AN AUTOCOMPLETE
+          //   const newValue = e.target.value;
+          //   setButtonStatus(false);
+          // }}
+          renderInput={(params) => (
+            <TextField {...params} label='Search Query' />
+          )}
+        ></Autocomplete>
+      </FormControl> */}
       <p>Selected Value: {selectedTask}</p>
 
       <FormControl fullWidth>
@@ -128,7 +135,12 @@ const DropDownMenu = () => {
       <Button
         variant='contained'
         disabled={buttonStatus}
-        onClick={() => console.log('hello')}
+        onClick={() =>
+          console.log(
+            //this would be a fetch request to the backend passing in the constructed query statement
+            selectedTask + `[${selectedTimeRange}]` + `[${selectedStepSize}]`
+          )
+        }
       >
         Create Chart
       </Button>
@@ -136,29 +148,23 @@ const DropDownMenu = () => {
   );
 };
 
-// export function DropDownMenu() {
-//   const [open, setOpen] = useState(false);
-//   const [selection, setSelection] = useState([]);
+// reason to hard code the features present is b/c we are fine tuning on the ones that are important
+// if not we could go to
+//http://localhost:9090/api/v1/label/__name__/values
+//that exposes all the possible search queries but it is a bit excessive
+// do we want all that for end user
 
-//   function handleOnClick(item) {}
+//promlabs
+//https://promlabs.com/blog/2020/12/17/promql-queries-for-exploring-your-metrics/
+//https://demo.promlabs.com/api/v1/metadata
 
-//   return (
-//     <div className='dropdown'>
-//       <div
-//         tabIndex={0}
-//         className='dropdown-items'
-//         role='button'
-//         onKeyPress={() => toggle(!open)}
-//         onClick={() => toggle(!open)}
-//       >
-//         <div className='dd-title'>
-//           <p className='dd-title--bold'></p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+//need to work on logic to compile all the state bodies
+//need to send a fetch request to the express server
+//req.body to express server will be redirected over as the promql query
 
+//need to work on logic to check the promql statements
+//counters and gauges dont support range vectors
+//need to check the statements going back
 export const CustomChart = (props) => {
   return (
     <Container id='charts'>

@@ -21,39 +21,45 @@ const MonitoringComponent = ({ query, range }) => {
       });
       const result = await response.json();
       // console.log('Data from server:', result.data);
+      const datasets = result.data.result.reduce((res, dataset) => {
+        res.push({
+          label: dataset.metric.pod,
+          borderColor: 'rgba(75,192,192,1)',
+          data: dataset.values.map(val => {
+            return [
+              // the timestamps are provided in Unix time format -- the number of 
+              // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
+              // These seconds need to be converted to milliseconds before being 
+              // passed into a Date object.
+              //
+              // toLocaleString obtains string representation of date and time in local
+              // timezone.
+              new Date(val[0] * 1000).toLocaleString(),
+              val[1],
+            ];
+          }),
+        });
+        return res;
+      }, []);
+      // console.log(datasets);
       let timestamps = [];
-      let datalabels = [];
       for (let i = 0; i < result.data.result[0].values.length; i++) {
         timestamps.push(
-          // the timestamps are provided in Unix time format -- the number of 
-          // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
-          // These seconds need to be converted to milliseconds before being 
-          // passed into a Date object.
-          //
-          // toLocaleString obtains string representation of date and time in local
-          // timezone.
           new Date(result.data.result[0].values[i][0] * 1000).toLocaleString());
-        datalabels.push(result.data.result[0].values[i][1]);
       }
-
-      // console.log(timestamps);
-      // console.log(datalabels);
 
       const lineData = {
         labels: timestamps,
-        datasets: [
-          {
-            label: result.data.result[0].metric.pod,
-            data: datalabels,
-            borderColor: 'rgba(75,192,192,1)',
-          },
-        ],
+        datasets: datasets,
       };
 
       const options = {
         scales: {
           x: {
-            type: 'category',
+            title: {
+              display: true,
+              text: "Elapsed Time (s)",
+            }
           },
           y: {
             title: {

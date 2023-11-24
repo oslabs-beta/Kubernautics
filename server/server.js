@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 // Route Handlers 
 app.use('/api/pull', dataRoutes);
 
-app.use('/api', clusterRoutes);
+app.use('/api/clusterMap', clusterRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).sendFile('src/components/pages/Dashboard/index.html');

@@ -6,7 +6,7 @@ export const ClusterVisualizer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/pods');
+        const response = await fetch('/api/clusterMap/pods');
         const data = await response.json();
         setPods(data)
       } catch (error) {

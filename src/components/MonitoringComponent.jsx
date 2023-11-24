@@ -2,19 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'; // -> automatic module import based on the file
 
-const MonitoringComponent = ({ query }) => {
+const MonitoringComponent = ({ query, range }) => {
   const [lineData, setLineData] = useState();
   const [options, setOptions] = useState();
 
   const fetchData = async () => {
     try {
+      const rangeStmt = `[${range}]` || '';
       const response = await fetch('/api/pull', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ query: query })
+        body: JSON.stringify({
+          query: `${query}${rangeStmt}`
+        })
       });
       const result = await response.json();
       // console.log('Data from server:', result.data);

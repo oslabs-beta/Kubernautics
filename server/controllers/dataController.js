@@ -14,8 +14,8 @@ dataController.getData = async (req, res, next) => {
     );
     res.locals.metric = await response.json();
     return next();
-  } catch (error) {
-    return next({ Error: 'Error inside of dataController' });
+  } catch (err) {
+    return next({ error: 'Error inside of dataController', err });
   }
 };
 

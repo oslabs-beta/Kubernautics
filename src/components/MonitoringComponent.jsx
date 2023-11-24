@@ -17,19 +17,12 @@ const MonitoringComponent = () => {
       let datalabels = [];
       for (let i = 0; i < result.data.result[0].values.length; i++) {
         timestamps.push(
-          // the timestamps are provided in Unix time format -- the number of 
-          // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
-          // These seconds need to be converted to milliseconds before being 
-          // passed into a Date object.
-          //
-          // toLocaleString obtains string representation of date and time in local
-          // timezone.
-          new Date(result.data.result[0].values[i][0] * 1000).toLocaleString());
+          // The timestamps are provided in Unix time format -- the number of
+          // Seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
+          new Date(result.data.result[0].values[i][0] * 1000).toLocaleString()
+        );
         datalabels.push(result.data.result[0].values[i][1]);
       }
-
-      // console.log(timestamps);
-      // console.log(datalabels);
 
       const lineData = {
         labels: timestamps,
@@ -77,9 +70,8 @@ const MonitoringComponent = () => {
     fetchData();
   }, []);
 
-  //conditional rendering of lineData and options
-  //Line graph doesn't render until lineData and options both exist
-  //delayed rendering
+  //Conditional rendering of lineData and options
+  //Line graph doesn't render until lineData and options both exist - Delayed rendering
   return (
     <div className='monitor'>
       <h2>Container CPU-Usage</h2>
@@ -87,33 +79,5 @@ const MonitoringComponent = () => {
     </div>
   );
 };
-
-// const ChartOne = ({ chartData }) => {
-
-//   const [chartOneState, setChartOneState] = UseState({
-
-//   })
-//   data={chartData}
-//   //create code to pull out CPU usage
-
-//   return (
-//     <div className="pie-chart">
-//       <Pie
-
-//         // data={chartData}
-
-//         options={{
-//           plugins: {
-//             refresh: 300
-//             title: {
-//               display: true,
-//               text: "Users Gained between 2016-2020"
-//             }
-//           }
-//         }}
-//       />
-//     </div>
-//   );
-// }
 
 export default MonitoringComponent;

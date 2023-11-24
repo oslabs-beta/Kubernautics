@@ -1,8 +1,7 @@
 import React from 'react';
 import NavBar from './NavBar';
-import Main from './Main';
+import Dashboard from './Dashboard';
 import { BrowserRouter, Router, Route, Link, Routes } from 'react-router-dom';
-import ChartContainer from './ChartContainer';
 import { CustomChart } from './CustomChart';
 import { ClusterVisualizer } from './ClusterVisualizer';
 
@@ -15,10 +14,10 @@ import { ClusterVisualizer } from './ClusterVisualizer';
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div id='application'>
         <NavBar />
         <Routes>
-          <Route path='/' element={<ChartContainer />} />
+          <Route path='/' element={<Dashboard />} />
           <Route path='/addMetric' element={<CustomChart />} />
           <Route path='/clusterVisualizer' element={<ClusterVisualizer />} />
         </Routes>

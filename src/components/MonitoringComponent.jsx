@@ -79,7 +79,7 @@ const MonitoringComponent = ({ query }) => {
   // Line graph doesn't render until lineData and options both exist
   return (
     <div className='monitor'>
-      <h2>Container CPU-Usage</h2>
+      {options && <h2>{options.scales.y.title.text}</h2>}
       {lineData && options && <Line data={lineData} options={options} />}
     </div>
   );

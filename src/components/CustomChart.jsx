@@ -14,6 +14,12 @@ import {
 import actions from './action';
 
 const DropDownMenu = () => {
+  const [buttonStatus, setButtonStatus] = useState(true);
+  const [selectedTask, setSelectedTask] = useState('');
+  const [selectedTimeRange, setSelectedTimeRange] = useState('');
+  const [selectedStepSize, setSelectedStepSize] = useState('');
+  const [showForm, setShowForm] = useState(false);
+
   const actionTasks = Object.keys(actions.data);
   //Provide the possible promql metric look ups, type, and help description
   const ddActionTasks = [];
@@ -35,11 +41,6 @@ const DropDownMenu = () => {
     );
   }
 
-  const [buttonStatus, setButtonStatus] = useState(true);
-  const [selectedTask, setSelectedTask] = useState('');
-  const [selectedTimeRange, setSelectedTimeRange] = useState('');
-  const [selectedStepSize, setSelectedStepSize] = useState('');
-
   //Options for collection time in dropdown
   const timeranges = ['1h', '2h', '4h', '6h', '12h', '24h'];
   //Options for data step intervals in dropdown
@@ -57,33 +58,41 @@ const DropDownMenu = () => {
     </MenuItem>
   ));
 
+  const handleButtonClick = () => {
+    setShowForm(true);
+  };
   //Form control has a scroll if there is too many options
   return (
     <div>
-      <FormControl fullWidth>
-        <InputLabel id='timeRange'>Select a Query</InputLabel>
-        <Select
-          id='taskname'
-          value={selectedTask}
-          onChange={(e) => {
-            setButtonStatus(false);
-            const taskname = e.target.value;
-            setSelectedTask(taskname);
-          }}
-          label='Select an option'
-          MenuProps={{
-            PaperProps: {
-              style: {
-                maxHeight: 180, // Set the maximum height of the dropdown menu
-              },
-            },
-          }}
-        >
-          {ddActionTasks}
-        </Select>
-      </FormControl>
+      <Button variant='contained' onClick={handleButtonClick}>
+        Add Metric
+      </Button>
+      {showForm && (
+        <div>
+          <FormControl fullWidth>
+            <InputLabel id='timeRange'>Select a Query</InputLabel>
+            <Select
+              id='taskname'
+              value={selectedTask}
+              onChange={(e) => {
+                setButtonStatus(false);
+                const taskname = e.target.value;
+                setSelectedTask(taskname);
+              }}
+              label='Select an option'
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: 180, // Set the maximum height of the dropdown menu
+                  },
+                },
+              }}
+            >
+              {ddActionTasks}
+            </Select>
+          </FormControl>
 
-      {/* <FormControl>
+          {/* <FormControl>
         <Autocomplete
           disablePortal
           id='task-dropdown'
@@ -100,50 +109,57 @@ const DropDownMenu = () => {
           )}
         ></Autocomplete>
       </FormControl> */}
-      <p>Selected Value: {selectedTask}</p>
+          <p>Selected Value: {selectedTask}</p>
 
-      <FormControl fullWidth>
-        <InputLabel id='timeRange'>Set a time range</InputLabel>
-        <Select
-          id='timeOptions'
-          value={selectedTimeRange}
-          onChange={(e) => {
-            const timeduration = e.target.value;
-            setSelectedTimeRange(timeduration);
-          }}
-          label='Select an option'
-        >
-          {ddTimeRanges}
-        </Select>
-      </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id='timeRange'>Set a time range</InputLabel>
+            <Select
+              id='timeOptions'
+              value={selectedTimeRange}
+              onChange={(e) => {
+                const timeduration = e.target.value;
+                setSelectedTimeRange(timeduration);
+              }}
+              label='Select an option'
+            >
+              {ddTimeRanges}
+            </Select>
+          </FormControl>
 
-      <FormControl fullWidth>
-        <InputLabel id='stepsize'>Set a step size</InputLabel>
-        <Select
-          id='stepsizeOptions'
-          value={selectedStepSize}
-          onChange={(e) => {
-            const stepsizing = e.target.value;
-            setSelectedStepSize(stepsizing);
-          }}
-          label='Select an option'
-        >
-          {ddStepSizes}
-        </Select>
-      </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id='stepsize'>Set a step size</InputLabel>
+            <Select
+              id='stepsizeOptions'
+              value={selectedStepSize}
+              onChange={(e) => {
+                const stepsizing = e.target.value;
+                setSelectedStepSize(stepsizing);
+              }}
+              label='Select an option'
+            >
+              {ddStepSizes}
+            </Select>
+          </FormControl>
 
-      <Button
-        variant='contained'
-        disabled={buttonStatus}
-        onClick={() =>
-          console.log(
-            //this would be a fetch request to the backend passing in the constructed query statement
-            selectedTask + `[${selectedTimeRange}]` + `[${selectedStepSize}]`
-          )
-        }
-      >
-        Create Chart
-      </Button>
+          <Button
+            variant='contained'
+            disabled={buttonStatus}
+            onClick={() => {
+              // if (!selectedTimeRange && !selectedStepSize) {
+              // }
+              console.log(
+                //this would be a fetch request to the backend passing in the constructed query statement
+                selectedTask +
+                  `[${selectedTimeRange}]` +
+                  `[${selectedStepSize}]`
+              );
+              setShowForm(false);
+            }}
+          >
+            Create Chart
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

@@ -66,7 +66,7 @@ const MonitoringComponent = ({ query, range }) => {
             type: 'linear',
             title: {
               display: true,
-              text: result.data.result[0].metric.__name__,
+              text: result.data.result[0].metric.__name__.replaceAll('_', ' '),
             },
             beginAtZero: true,
           },

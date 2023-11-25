@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'; // -> automatic module import based on the file
+import { enUS } from 'date-fns/locale';
+import 'chartjs-adapter-date-fns';
 
 const MonitoringComponent = ({ query, range }) => {
   const [lineData, setLineData] = useState();
@@ -24,6 +26,7 @@ const MonitoringComponent = ({ query, range }) => {
       // console.log('Data from server:', result.data);
       
       setTitle(result.data.result[0].metric.__name__.replaceAll('_', ' '));
+      let labels = [];
       const datasets = result.data.result.reduce((res, dataset) => {
         res.push({
           label: dataset.metric.pod,
@@ -33,32 +36,37 @@ const MonitoringComponent = ({ query, range }) => {
               // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
               // These seconds need to be converted to milliseconds before being 
               // passed into a Date object.
-              //
-              // toLocaleString obtains string representation of date and time in local
-              // timezone.
-              new Date(val[0] * 1000).toLocaleString(),
+            const timestamp = val[0] * 1000;
+            labels.push(timestamp);
+            return [
+              timestamp,
               val[1],
             ];
           }),
         });
         return res;
       }, []);
-      // console.log(datasets);
-      let timestamps = [];
-      for (let i = 0; i < result.data.result[0].values.length; i++) {
-        timestamps.push(
-          new Date(result.data.result[0].values[i][0] * 1000).toLocaleString());
-      }
 
       const lineData = {
-        labels: timestamps,
+        labels: labels,
         datasets: datasets,
       };
 
       const options = {
         scales: {
           x: {
-            type: 'linear',
+            type: 'time',
+            time: {
+              unit: 'minute',
+              displayFormats: {
+                minute: 'k:mm',
+              },
+            },
+            adapters: {
+              date: {
+                locale: enUS,
+              },
+            },
             title: {
               display: true,
               text: "Time (mm:ss)",

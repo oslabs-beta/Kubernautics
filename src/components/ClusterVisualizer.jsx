@@ -5,6 +5,7 @@ export const ClusterVisualizer = () => {
   const [nodes, setNodes] = useState([]);
   const [pods, setPods] = useState([]);
   const [services, setServices] = useState([]);
+  const [shortenName, setShortenName] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,13 +36,25 @@ export const ClusterVisualizer = () => {
 
       services.forEach((service, serviceIndex) => {
         const serviceNodeId = `service-${serviceIndex}`;
-        createdNodes.push({ id: serviceNodeId, label: service.metadata.name, shape: 'box', color: '#6FB1FC' });
+        createdNodes.push({
+          id: serviceNodeId,
+          label: shortenName
+            ? service.metadata.name.slice(0, 10)
+            : service.metadata.name,
+          shape: 'box',
+          color: '#6FB1FC'})
         createdEdges.push({ from: nodeId, to: serviceNodeId, id: `edge-service-${serviceIndex}` });
 
         pods.forEach((pod, podIndex) => {
           if (pod.metadata.name.includes(service.metadata.name.toLowerCase())) {
             const podNodeId = `pod-${podIndex}`;
-            createdNodes.push({ id: podNodeId, label: pod.metadata.name, shape: 'box', color: '#F8F8F8' });
+            createdNodes.push({
+              id: podNodeId,
+              label: shortenName
+                ? pod.metadata.name.slice(0, 10)
+                : pod.metadata.name,
+              shape: 'box',
+              color: 'white'})
             createdEdges.push({ from: serviceNodeId, to: podNodeId, id: `edge-${podIndex}` });
           }
         });
@@ -75,7 +88,8 @@ export const ClusterVisualizer = () => {
 
   const events = {
     select: function (event) {
-      console.log('You selected me')
+      setShortenName(!shortenName);
+      console.log('You selected me');
     },
   };
 

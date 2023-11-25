@@ -4,28 +4,13 @@ import { CustomChart } from './CustomChart';
 const Dashboard = (props) => {
   // Whatever charts (if any) we want up by default can go here. If we decide ultimately
   // to present the user a blank slate dashboard to work from, this can be deleted.
+
+  //Haven't added but might want a way to delete charts from the dashboard. as simple as locating
+  //and deleting the query line from localStorage
   const defaultCharts = [
     {
       query: 'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}',
       range: '20m',
-    },
-  ]
-  const [charts, setCharts] = useState(defaultCharts);
-    {
-      query:
-        'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}[20m]',
-    },
-    {
-      query:
-        'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}[20m]',
-    },
-    {
-      query:
-        'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}[20m]',
-    },
-    {
-      query:
-        'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}[20m]',
     },
   ];
   const [charts, setCharts] = useState(() => {
@@ -41,12 +26,12 @@ const Dashboard = (props) => {
     }
   });
 
-  const SaveDataToLocalStorage = (data) => {
+  const SaveDataToLocalStorage = (query, range) => {
     //Get the existing Data from localStorage
     const existingData = JSON.parse(localStorage.getItem('session')) || [];
     //Update the existing storage with the data passed through
     console.log('existingData', existingData);
-    const newData = [...existingData, { query: data }];
+    const newData = [...existingData, { query: query, range: range }];
     //Rewrite the localstorage
     localStorage.setItem('session', JSON.stringify(newData));
     setCharts(JSON.parse(localStorage.getItem('session')));
@@ -57,7 +42,13 @@ const Dashboard = (props) => {
       <CustomChart onSaveToLocalStorage={SaveDataToLocalStorage} />
       <div id='dashboard'>
         {charts.map((chart, i) => {
-          return <MonitoringComponent key={`chart-${i}`} query={chart.query} />;
+          return (
+            <MonitoringComponent
+              key={`chart-${i}`}
+              query={chart.query}
+              range={chart.range}
+            />
+          );
         })}
       </div>
     </div>

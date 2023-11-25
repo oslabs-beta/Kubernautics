@@ -91,7 +91,7 @@ const MonitoringComponent = ({ query }) => {
     // Set up an interval to fetch data every 30 seconds
     const intervalId = setInterval(() => {
       fetchData();
-    }, 30000); // 30 seconds in milliseconds
+    }, 15000); // 30 seconds in milliseconds
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);

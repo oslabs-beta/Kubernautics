@@ -77,7 +77,7 @@ const MonitoringComponent = ({ query, range }) => {
         animation: true,
         plugins: {
           legend: {
-            display: true,
+            display: false,
           },
         },
         elements: {

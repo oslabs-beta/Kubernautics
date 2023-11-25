@@ -32,10 +32,10 @@ const MonitoringComponent = ({ query, range }) => {
           label: dataset.metric.pod,
           borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
           data: dataset.values.map(val => {
-              // the timestamps are provided in Unix time format -- the number of 
-              // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
-              // These seconds need to be converted to milliseconds before being 
-              // passed into a Date object.
+            // the timestamps are provided in Unix time format -- the number of 
+            // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
+            // These seconds need to be converted to milliseconds before being 
+            // passed into a Date object.
             const timestamp = val[0] * 1000;
             labels.push(timestamp);
             return [

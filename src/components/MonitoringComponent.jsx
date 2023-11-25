@@ -15,16 +15,16 @@ const MonitoringComponent = ({ query, range }) => {
       const response = await fetch('/api/pull', {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          query: `${query}${rangeStmt}`
-        })
+          query: `${query}${rangeStmt}`,
+        }),
       });
       const result = await response.json();
       // console.log('Data from server:', result.data);
-      
+
       setTitle(result.data.result[0].metric.__name__.replaceAll('_', ' '));
       let labels = [];
       const datasets = result.data.result.reduce((res, dataset) => {
@@ -32,17 +32,14 @@ const MonitoringComponent = ({ query, range }) => {
           label: dataset.metric.pod,
           borderColor: 'rgba(75,192,192,1)',
           // borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`, // re-implement later in a way that persists the color across updates/re-renders
-          data: dataset.values.map(val => {
-            // the timestamps are provided in Unix time format -- the number of 
+          data: dataset.values.map((val) => {
+            // the timestamps are provided in Unix time format -- the number of
             // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
-            // These seconds need to be converted to milliseconds before being 
+            // These seconds need to be converted to milliseconds before being
             // passed into a Date object.
             const timestamp = val[0] * 1000;
             labels.push(timestamp);
-            return [
-              timestamp,
-              val[1],
-            ];
+            return [timestamp, val[1]];
           }),
         });
         return res;
@@ -70,7 +67,7 @@ const MonitoringComponent = ({ query, range }) => {
             },
             title: {
               display: true,
-              text: "Time (mm:ss)",
+              text: 'Time (mm:ss)',
             },
           },
           y: {

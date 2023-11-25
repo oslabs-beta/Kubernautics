@@ -12,9 +12,13 @@ const NavBar = (props) => {
 
       <nav>
         <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/addMetric'>Add Metric</Link></li>
-          <li><Link to='/clusterVisualizer'>Visualizer</Link></li>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          {/* <li><Link to='/addMetric'>Add Metric</Link></li> */}
+          <li>
+            <Link to='/clusterVisualizer'>Visualizer</Link>
+          </li>
         </ul>
       </nav>
     </header>

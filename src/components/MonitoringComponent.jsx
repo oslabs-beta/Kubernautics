@@ -62,8 +62,8 @@ const MonitoringComponent = ({ query, range }) => {
             type: 'linear',
             title: {
               display: true,
-              text: "Elapsed Time (s)",
-            }
+              text: "Time (mm:ss)",
+            },
           },
           y: {
             type: 'linear',

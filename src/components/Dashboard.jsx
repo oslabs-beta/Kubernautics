@@ -6,6 +6,12 @@ const Dashboard = (props) => {
   // to present the user a blank slate dashboard to work from, this can be deleted.
   const defaultCharts = [
     {
+      query: 'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}',
+      range: '20m',
+    },
+  ]
+  const [charts, setCharts] = useState(defaultCharts);
+    {
       query:
         'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}[20m]',
     },

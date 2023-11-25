@@ -1,62 +1,92 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'; // -> automatic module import based on the file
+import { enUS } from 'date-fns/locale';
+import 'chartjs-adapter-date-fns';
 
-const MonitoringComponent = ({ query }) => {
+const MonitoringComponent = ({ query, range }) => {
   const [lineData, setLineData] = useState();
   const [options, setOptions] = useState();
+  const [title, setTitle] = useState();
 
   const fetchData = async () => {
     try {
+      const rangeStmt = `[${range}]` || '';
       const response = await fetch('/api/pull', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query: query }),
+        body: JSON.stringify({
+          query: `${query}${rangeStmt}`,
+        }),
       });
       const result = await response.json();
       // console.log('Data from server:', result.data);
-      let timestamps = [];
-      let datalabels = [];
-      for (let i = 0; i < result.data.result[0].values.length; i++) {
-        timestamps.push(
-          // The timestamps are provided in Unix time format -- the number of
-          // Seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
-          new Date(result.data.result[0].values[i][0] * 1000).toLocaleString()
-        );
-        datalabels.push(result.data.result[0].values[i][1]);
-      }
+
+      setTitle(result.data.result[0].metric.__name__.replaceAll('_', ' '));
+      let labels = [];
+      const datasets = result.data.result.reduce((res, dataset) => {
+        res.push({
+          label: dataset.metric.pod,
+          borderColor: 'rgba(75,192,192,1)',
+          // borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`, // re-implement later in a way that persists the color across updates/re-renders
+          data: dataset.values.map((val) => {
+            // the timestamps are provided in Unix time format -- the number of
+            // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
+            // These seconds need to be converted to milliseconds before being
+            // passed into a Date object.
+            const timestamp = val[0] * 1000;
+            labels.push(timestamp);
+            return [timestamp, val[1]];
+          }),
+        });
+        return res;
+      }, []);
 
       const lineData = {
-        labels: timestamps,
-        datasets: [
-          {
-            label: result.data.result[0].metric.pod,
-            data: datalabels,
-            borderColor: 'rgba(75,192,192,1)',
-          },
-        ],
+        labels: labels,
+        datasets: datasets,
       };
 
       const options = {
         scales: {
           x: {
-            type: 'category',
-          },
-          y: {
+            type: 'time',
+            time: {
+              unit: 'minute',
+              displayFormats: {
+                minute: 'k:mm',
+              },
+            },
+            adapters: {
+              date: {
+                locale: enUS,
+              },
+            },
             title: {
               display: true,
-              text: result.data.result[0].metric.__name__,
+              text: 'Time (mm:ss)',
             },
+          },
+          y: {
+            type: 'linear',
+            // Eventually we will want y-axis labels that reflect the units
+            // being employed by a given chart. When that feature is ready,
+            // this is where/how the title will be declared:
+            //
+            // title: {
+            //   display: true,
+            //   text: 'millicores',
+            // },
             beginAtZero: true,
           },
         },
         animation: true,
         plugins: {
           legend: {
-            display: true,
+            display: false,
           },
         },
         elements: {
@@ -69,11 +99,6 @@ const MonitoringComponent = ({ query }) => {
       return console.error('Error fetching data', err);
     }
   };
-
-  //ensures data is fetched only after components are mount
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   useEffect(() => {
     // Fetch data initially
@@ -92,7 +117,7 @@ const MonitoringComponent = ({ query }) => {
   // Line graph doesn't render until lineData and options both exist
   return (
     <div className='monitor'>
-      {options && <h2>{options.scales.y.title.text}</h2>}
+      <h2>{title}</h2>
       {lineData && options && <Line data={lineData} options={options} />}
     </div>
   );

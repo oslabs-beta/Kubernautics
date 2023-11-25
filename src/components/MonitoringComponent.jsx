@@ -113,3 +113,7 @@ const MonitoringComponent = ({ query }) => {
 
 
 export default MonitoringComponent;
+
+
+
+export default MonitoringComponent;

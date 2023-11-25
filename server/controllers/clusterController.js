@@ -5,7 +5,6 @@ const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
-const k8sApi1 = kc.makeApiClient(k8s.AppsV1Api);
 
 clusterController.getPods = async (req, res, next) => {
   try {
@@ -14,8 +13,11 @@ clusterController.getPods = async (req, res, next) => {
     res.locals.pods = pods;
     return next();
   } catch (err) {
-    console.error(err);
-    next(err);
+    return next({
+      log: 'Error found in clusterController.getPods',
+      status: 500,
+      message: { err: 'An error occurred' },
+    });
   }
 };
 
@@ -26,8 +28,11 @@ clusterController.getNodes = async (req, res, next) => {
     res.locals.nodes = nodes;
     return next();
   } catch (err) {
-    console.error(err);
-    next(err);
+    return next({
+      log: 'Error found in clusterController.getNodes',
+      status: 500,
+      message: { err: 'An error occurred' },
+    });
   }
 };
 
@@ -39,12 +44,15 @@ clusterController.getServices = async (req, res, next) => {
       res.locals.services = [];
       return next();
     }
-    const services = servicesResponse.body.items || [];
+    const services = servicesResponse.body.items;
     res.locals.services = services;
     return next();
   } catch (err) {
-    console.error(err);
-    next(err);
+    return next({
+      log: 'Error found in clusterController.getServices',
+      status: 500,
+      message: { err: 'An error occurred' },
+    });
   }
 };
 

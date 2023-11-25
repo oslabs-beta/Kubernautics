@@ -78,10 +78,23 @@ const MonitoringComponent = ({ query }) => {
   };
 
   // Ensures data is fetched only after components are mount
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
+  useEffect(() => {
+    // Call fetchData initially
+    fetchData();
+
+    // Set up an interval to call fetchData every 30 seconds (30,000 milliseconds)
+    const intervalId = setInterval(fetchData, 15000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [query]); // Include query 
+
+
+  
   // Conditional rendering of lineData and options
   // Line graph doesn't render until lineData and options both exist
   return (
@@ -91,6 +104,10 @@ const MonitoringComponent = ({ query }) => {
     </div>
   );
 };
+
+
+
+export default MonitoringComponent;
 
 // const ChartOne = ({ chartData }) => {
 
@@ -119,5 +136,3 @@ const MonitoringComponent = ({ query }) => {
 //     </div>
 //   );
 // }
-
-export default MonitoringComponent;

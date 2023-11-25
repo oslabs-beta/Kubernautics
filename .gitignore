@@ -9,3 +9,6 @@ dist/
 
 # Ignore DevSpace cache and log folder
 .devspace/
+
+#ignore ds_store
+.DS_Store

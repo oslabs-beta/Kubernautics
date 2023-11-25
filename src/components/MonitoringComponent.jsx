@@ -102,13 +102,6 @@ const MonitoringComponent = ({ query, range }) => {
     }
   };
 
-
-
-  //ensures data is fetched only after components are mount
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
   useEffect(() => {
     // Fetch data initially
     fetchData();
@@ -122,9 +115,6 @@ const MonitoringComponent = ({ query, range }) => {
     return () => clearInterval(intervalId);
   }, []); // Empty dependency array to run the effect only once on mount
 
-
-
-
   // Conditional rendering of lineData and options
   // Line graph doesn't render until lineData and options both exist
   return (
@@ -134,11 +124,5 @@ const MonitoringComponent = ({ query, range }) => {
     </div>
   );
 };
-
-
-
-export default MonitoringComponent;
-
-
 
 export default MonitoringComponent;

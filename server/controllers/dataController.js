@@ -16,7 +16,7 @@ dataController.getData = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: 'Error found in dataController.getData',
+      log: `Error found in dataController.getData ${err}`,
       status: 500,
       message: { err: 'An error occurred' },
     });

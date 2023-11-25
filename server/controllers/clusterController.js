@@ -14,7 +14,7 @@ clusterController.getPods = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: 'Error found in clusterController.getPods',
+      log: `Error found in clusterController.getPods ${err}`,
       status: 500,
       message: { err: 'An error occurred' },
     });
@@ -29,7 +29,7 @@ clusterController.getNodes = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: 'Error found in clusterController.getNodes',
+      log: `Error found in clusterController.getNodes ${err}`,
       status: 500,
       message: { err: 'An error occurred' },
     });
@@ -49,7 +49,7 @@ clusterController.getServices = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: 'Error found in clusterController.getServices',
+      log: `Error found in clusterController.getServices ${err}`,
       status: 500,
       message: { err: 'An error occurred' },
     });

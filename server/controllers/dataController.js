@@ -9,13 +9,13 @@ dataController.getData = async (req, res, next) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'query=container_cpu_usage_seconds_total{namespace="kubernautics-dev"}[20m]',
+        body: `query=${req.body.query}`,
       }
     );
     res.locals.metric = await response.json();
     return next();
-  } catch (error) {
-    return next({ Error: 'Error inside of dataController' });
+  } catch (err) {
+    return next({ error: 'Error inside of dataController', err });
   }
 };
 

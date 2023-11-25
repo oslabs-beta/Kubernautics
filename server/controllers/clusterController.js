@@ -12,9 +12,9 @@ clusterController.getPods = async (req, res, next) => {
     const podsRes = await k8sApi.listNamespacedPod('kubernautics-dev');
     const pods = podsRes.body.items;
 
-    pods.forEach((pod, index) => {
-      console.log(`Pod ${index + 1}: ${pod.metadata.name}`);
-    });
+    // pods.forEach((pod, index) => {
+    //   console.log(`Pod ${index + 1}: ${pod.metadata.name}`);
+    // });
 
     res.locals.pods = pods;
     return next();
@@ -29,9 +29,9 @@ clusterController.getNodes = async (req, res, next) => {
     const nodesRes = await k8sApi.listNode();
     const nodes = nodesRes.body.items;
 
-    nodes.forEach((node, index) => {
-      console.log(`Node ${index + 1}: ${node.metadata.name}`);
-    });
+    // nodes.forEach((node, index) => {
+    //   console.log(`Node ${index + 1}: ${node.metadata.name}`);
+    // });
 
     res.locals.nodes = nodes;
     return next();
@@ -43,8 +43,16 @@ clusterController.getNodes = async (req, res, next) => {
 
 clusterController.getServices = async (req, res, next) => {
   try {
-    const servicesResponse = await k8sApi.listServiceForAllNamespaces();
-    const services = servicesResponse.body.items;
+    const namespace = 'kubernautics-dev'; // Specify your namespace here
+    const servicesResponse = await k8sApi.listNamespacedService('kubernautics-dev');
+
+    if (!servicesResponse.body) {
+      console.error('No response body found in services response:', servicesResponse);
+      res.locals.services = [];
+      return next();
+    }
+
+    const services = servicesResponse.body.items || [];
 
     services.forEach((service, index) => {
       console.log(`Service ${index + 1}: ${service.metadata.name}`);
@@ -57,6 +65,7 @@ clusterController.getServices = async (req, res, next) => {
     next(err);
   }
 };
+
 
 clusterController.getDeployments = async (req, res, next) => {
   try {

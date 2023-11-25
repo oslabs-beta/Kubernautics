@@ -67,10 +67,14 @@ const MonitoringComponent = ({ query, range }) => {
           },
           y: {
             type: 'linear',
-            title: {
-              display: true,
-              text: result.data.result[0].metric.__name__.replaceAll('_', ' '),
-            },
+            // Eventually we will want y-axis labels that reflect the units
+            // being employed by a given chart. When that feature is ready,
+            // this is where/how the title will be declared:
+            //
+            // title: {
+            //   display: true,
+            //   text: 'millicores',
+            // },
             beginAtZero: true,
           },
         },

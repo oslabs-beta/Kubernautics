@@ -30,7 +30,8 @@ const MonitoringComponent = ({ query, range }) => {
       const datasets = result.data.result.reduce((res, dataset) => {
         res.push({
           label: dataset.metric.pod,
-          borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+          borderColor: 'rgba(75,192,192,1)',
+          // borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`, // re-implement later in a way that persists the color across updates/re-renders
           data: dataset.values.map(val => {
             // the timestamps are provided in Unix time format -- the number of 
             // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.

@@ -12,6 +12,7 @@ import {
   Grid,
 } from '@mui/material';
 import actions from './action';
+import ClearChart from './ClearCharts';
 
 const DropDownMenu = (props) => {
   const [buttonStatus, setButtonStatus] = useState(true);
@@ -162,6 +163,7 @@ const DropDownMenu = (props) => {
 export const CustomChart = (props) => {
   return (
     <Container id='ddMenu'>
+      <ClearChart />
       <DropDownMenu onSaveToLocalStorage={props.onSaveToLocalStorage} />
     </Container>
   );

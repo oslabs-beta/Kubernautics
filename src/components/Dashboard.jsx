@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MonitoringComponent from './MonitoringComponent';
 import { CustomChart } from './CustomChart';
+// import ClearChart from './ClearCharts';
 const Dashboard = (props) => {
   // Whatever charts (if any) we want up by default can go here. If we decide ultimately
   // to present the user a blank slate dashboard to work from, this can be deleted.
@@ -40,6 +41,7 @@ const Dashboard = (props) => {
   return (
     <div id='clickables'>
       <CustomChart onSaveToLocalStorage={SaveDataToLocalStorage} />
+
       <div id='dashboard'>
         {charts.map((chart, i) => {
           return (

@@ -70,10 +70,23 @@ const MonitoringComponent = ({ query }) => {
     }
   };
 
-  // Ensures data is fetched only after components are mount
+  //ensures data is fetched only after components are mount
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
+    // Fetch data initially
     fetchData();
-  }, []);
+
+    // Set up an interval to fetch data every 30 seconds
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 15000); // 30 seconds in milliseconds
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array to run the effect only once on mount
 
   // Conditional rendering of lineData and options
   // Line graph doesn't render until lineData and options both exist

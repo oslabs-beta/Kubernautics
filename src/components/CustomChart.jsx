@@ -147,7 +147,7 @@ const DropDownMenu = (props) => {
                 //this would be a fetch request to the backend passing in the constructed query statement
                 selectedTask + `[${selectedTimeRange}]`;
               // + `[${selectedStepSize}]`;
-              props.onSaveToLocalStorage(newQuery);
+              props.onSaveToLocalStorage(selectedTask, selectedTimeRange);
               setShowForm(false);
             }}
           >

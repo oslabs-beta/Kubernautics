@@ -5,6 +5,7 @@ import Chart from 'chart.js/auto'; // -> automatic module import based on the fi
 const MonitoringComponent = ({ query, range }) => {
   const [lineData, setLineData] = useState();
   const [options, setOptions] = useState();
+  const [title, setTitle] = useState();
 
   const fetchData = async () => {
     try {
@@ -21,6 +22,8 @@ const MonitoringComponent = ({ query, range }) => {
       });
       const result = await response.json();
       // console.log('Data from server:', result.data);
+      
+      setTitle(result.data.result[0].metric.__name__.replaceAll('_', ' '));
       const datasets = result.data.result.reduce((res, dataset) => {
         res.push({
           label: dataset.metric.pod,
@@ -97,7 +100,7 @@ const MonitoringComponent = ({ query, range }) => {
   // Line graph doesn't render until lineData and options both exist
   return (
     <div className='monitor'>
-      <h2>Container CPU-Usage</h2>
+      <h2>{title}</h2>
       {lineData && options && <Line data={lineData} options={options} />}
     </div>
   );

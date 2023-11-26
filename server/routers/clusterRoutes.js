@@ -14,12 +14,4 @@ clusterRouter.get('/services', clusterController.getServices, (req, res) => {
   return res.status(200).json(res.locals.services);
 });
 
-// clusterRouter.get('/deployments', clusterController.getDeployments, (req, res) => {
-//   return res.status(200).json(res.locals.deployments);
-// });
-
-// clusterRouter.get('/namespaces', clusterController.namespaces, (req, res) => {
-//   return res.status(200).json(res.locals.namespaces);
-// });
-
 module.exports = clusterRouter;

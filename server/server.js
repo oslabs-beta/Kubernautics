@@ -20,9 +20,23 @@ app.get('/', (req, res) => {
   res.status(200).sendFile('src/components/pages/Dashboard/index.html');
 });
 
+//Global Error Handler
+app.use((err, req, res, next) => {
+  const globalError = {
+      log: 'Global Error Found',
+      status: 500,
+      message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, globalError, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
+});
+
 // Server Listening Port
 app.listen(PORT, () => {
   console.log(`Kubernautics listening on http://localhost:${PORT}`);
 });
+
+
 
 module.exports = app;

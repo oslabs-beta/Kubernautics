@@ -5,7 +5,6 @@ const dataRoutes = require('./routers/dataRoutes');
 const clusterRoutes = require('./routers/clusterRoutes');
 
 const app = express();
-const PORT = process.env.EXPRESS_PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -31,12 +30,5 @@ app.use((err, req, res, next) => {
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
-
-// Server Listening Port
-app.listen(PORT, () => {
-  console.log(`Kubernautics listening on http://localhost:${PORT}`);
-});
-
-
 
 module.exports = app;

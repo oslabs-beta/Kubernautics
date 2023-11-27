@@ -20,9 +20,4 @@ app.get('/', (req, res) => {
   res.status(200).sendFile('src/components/pages/Dashboard/index.html');
 });
 
-// Server Listening Port
-app.listen(PORT, () => {
-  console.log(`Kubernautics listening on http://localhost:${PORT}`);
-});
-
 module.exports = app;

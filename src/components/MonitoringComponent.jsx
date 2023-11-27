@@ -4,14 +4,17 @@ import Chart from 'chart.js/auto'; // -> automatic module import based on the fi
 import { enUS } from 'date-fns/esm/locale';
 import 'chartjs-adapter-date-fns';
 
-const MonitoringComponent = ({ query, range }) => {
+const MonitoringComponent = ({ query, range, stepSize }) => {
   const [lineData, setLineData] = useState();
   const [options, setOptions] = useState();
   const [title, setTitle] = useState();
 
   const fetchData = async () => {
     try {
-      const rangeStmt = `[${range}]` || '';
+      const rangeStmt = range
+        ? `[${range}${stepSize ? ':' + stepSize + 's' : ''}]`
+        : '';
+      console.log(rangeStmt);
       const response = await fetch('/api/pull', {
         method: 'POST',
         headers: {
@@ -23,6 +26,7 @@ const MonitoringComponent = ({ query, range }) => {
         }),
       });
       const result = await response.json();
+      console.log(result);
       const colorCodes = [
         [255, 0, 0],
         [0, 255, 0],
@@ -137,7 +141,7 @@ const MonitoringComponent = ({ query, range }) => {
     // Set up an interval to fetch data every 30 seconds
     const intervalId = setInterval(() => {
       fetchData();
-    }, 15000); // 30 seconds in milliseconds
+    }, 1000 * (stepSize + 1 || 15)); //1000 * (stepSize + 1)); //(stepSize || 15)); // 30 seconds in milliseconds
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);

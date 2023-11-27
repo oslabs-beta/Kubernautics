@@ -8,7 +8,7 @@
     "cluster": "./scripts/dev_cluster.sh",
     "dev": "NODE_ENV=development EXPRESS_PORT=3010 concurrently 'nodemon server/server.js' 'webpack-dev-server --open'",
     "start": "NODE_ENV=production node server/server.js",
-    "test": "jest"
+    "test": "jest --verbose -c ./jest.all.config.js"
   },
   "repository": {
     "type": "git",

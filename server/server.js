@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
 
-// Route Handlers 
+// Route Handlers
 app.use('/api/pull', dataRoutes);
 
 app.use('/api/clusterMap', clusterRoutes);
@@ -22,9 +22,9 @@ app.get('/', (req, res) => {
 //Global Error Handler
 app.use((err, req, res, next) => {
   const globalError = {
-      log: 'Global Error Found',
-      status: 500,
-      message: { err: 'An error occurred' },
+    log: 'Global Error Found',
+    status: 500,
+    message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, globalError, err);
   console.log(errorObj.log);

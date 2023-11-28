@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import nautics from '../../assets/images/nautics';
 
-const NavBar = (props) => {
+const NavBar = () => {
   return (
     <header className='navBar'>
       <div className='brand'>

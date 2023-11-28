@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'; // -> automatic module import based on the file
-import { enUS } from 'date-fns/esm/locale';
+import { enUS } from 'date-fns/locale';
 import 'chartjs-adapter-date-fns';
 
 const MonitoringComponent = ({ query, range, stepSize }) => {

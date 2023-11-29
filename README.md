@@ -59,8 +59,7 @@ Kubernautics is an open-source <b> cluster monitoring solution </b> that looks t
 
 - Kubernautics simplifies the Prometheus scraping tasks and provides additional information to each query task
   <br>
-
-![homepage](https://i.imgur.com/Iqkai3C.gif)
+  ![homepage](https://i.imgur.com/Iqkai3C.gif)
 
 ### 3. Cluster Visualization
 

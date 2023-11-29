@@ -1,53 +1,43 @@
 import React, { useState } from 'react';
 import {
   Container,
-  Typography,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  Autocomplete,
   Button,
-  TextField,
   Grid,
-  Dialog,  
+  Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { styled } from '@mui/system';
 import actions from './action';
 import ClearChart from './ClearCharts';
-
-const useStyles = makeStyles((theme) => ({
-  // Customize the styles for the Dialog component
-  customDialog: {
-    width: '1500px', // Set the desired width
-    // Add other styles for the entire dialog here
-  },
-  customMenu: {
-    
-    width: '1400px', // Set the desired width for the dropdown menu
-  },
-}));
-
-const CustomDialog = styled(Dialog)({
-  '& .MuiDialog-paper': {
-    width: '1500px',
-    maxHeight: '350px',
-  },
-});
 
 const DropDownMenu = (props) => {
   const [buttonStatus, setButtonStatus] = useState(true);
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedTimeRange, setSelectedTimeRange] = useState('');
   const [selectedStepSize, setSelectedStepSize] = useState();
-  const [showForm, setShowForm] = useState(false);
+  // const [showForm, setShowForm] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
 
-  const classes = useStyles()
+  const classes = styled((theme) => ({
+    // Customize the styles for the Dialog component
+    customDialog: {
+      width: '1500px',
+      maxHeight: '350px',
+      padding: theme.spacing(2),
+    },
+    customMenu: {
+      // Set the desired width for the dropdown menu
+      width: '1400px',
+      maxHeight: '350px',
+      padding: theme.spacing(2),
+    },
+  }));
   const actionTasks = Object.keys(actions.data);
   //Provide the possible promql metric look ups, type, and help description
   const ddActionTasks = [];
@@ -86,105 +76,102 @@ const DropDownMenu = (props) => {
     </MenuItem>
   ));
 
-  const handleButtonClick = () => {
-    setFormVisibility(true);
-  };
-
   //Form control has a scroll if there is too many options
-return (
+  return (
     <div>
-      <Button variant='contained' onClick={handleButtonClick}>
+      <Button variant='contained' onClick={() => setFormVisibility(true)}>
         Add Metric
       </Button>
 
-      <Dialog open={isFormVisible} onClose={() => setFormVisibility(false)} classes={{ paper: classes.customDialog }}>
+      <Dialog
+        open={isFormVisible}
+        onClose={() => setFormVisibility(false)}
+        PaperProps={{
+          className: classes.customDialog,
+        }}
+      >
         <DialogTitle>Add Metric</DialogTitle>
 
         <DialogContent>
-        {(
-          <div>
-            
-            <FormControl fullWidth>
-              <InputLabel id='timeRange'>Select a Query</InputLabel>
-              <Select
-                id='taskname'
-                value={selectedTask}
-                onChange={(e) => {
-                  setButtonStatus(false);
-                  const taskname = e.target.value;
-                  setSelectedTask(taskname);
-                }}
-                label='Select an option'
-                MenuProps={{
-                  PaperProps: {
-                    style: {
-                      maxHeight: 280, // Set the maximum height of the dropdown menu
+          {
+            <div>
+              <FormControl fullWidth>
+                <InputLabel id='timeRange'>Select a Query</InputLabel>
+                <Select
+                  id='taskname'
+                  value={selectedTask}
+                  onChange={(e) => {
+                    setButtonStatus(false);
+                    const taskname = e.target.value;
+                    setSelectedTask(taskname);
+                  }}
+                  label='Select an option'
+                  MenuProps={{
+                    PaperProps: {
+                      style: {
+                        maxHeight: 280, // Set the maximum height of the dropdown menu
+                      },
+                      className: classes.customMenu,
                     },
-                     className: classes.customMenu, 
-                  },
-                }}
-              >
-                {ddActionTasks}
-              </Select>
-            </FormControl>
+                  }}
+                >
+                  {ddActionTasks}
+                </Select>
+              </FormControl>
 
-        
-          <p>Selected Value: {selectedTask}</p>
-          <FormControl fullWidth>
-            <InputLabel id='timeRange'>Set a time range</InputLabel>
-            <Select
-              id='timeOptions'
-              value={selectedTimeRange}
-              onChange={(e) => {
-                const timeduration = e.target.value;
-                setSelectedTimeRange(timeduration);
-              }}
-              label='Select an option'
-            >
-              {ddTimeRanges}
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel id='stepsize'>Set a step size (seconds)</InputLabel>
-            <Select
-              id='stepsizeOptions'
-              value={selectedStepSize}
-              onChange={(e) => {
-                const stepsizing = e.target.value;
-                setSelectedStepSize(stepsizing);
-              }}
-              label='Select an option'
-            >
-              {ddStepSizes}
-            </Select>
-          </FormControl>
-
-          </div>
-        )}
-
+              <FormControl fullWidth>
+                <InputLabel id='timeRange'>Set a time range</InputLabel>
+                <Select
+                  id='timeOptions'
+                  value={selectedTimeRange}
+                  onChange={(e) => {
+                    const timeduration = e.target.value;
+                    setSelectedTimeRange(timeduration);
+                  }}
+                  label='Select an option'
+                >
+                  {ddTimeRanges}
+                </Select>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel id='stepsize'>Set a step size (seconds)</InputLabel>
+                <Select
+                  id='stepsizeOptions'
+                  value={selectedStepSize}
+                  onChange={(e) => {
+                    const stepsizing = e.target.value;
+                    setSelectedStepSize(stepsizing);
+                  }}
+                  label='Select an option'
+                >
+                  {ddStepSizes}
+                </Select>
+              </FormControl>
+            </div>
+          }
         </DialogContent>
 
-          <DialogActions>
-            <Button onClick={() => setFormVisibility(false)}>Cancel</Button>
+        <DialogActions>
+          <Button onClick={() => setFormVisibility(false)}>Cancel</Button>
 
           <Button
             variant='contained'
             disabled={!selectedTask || !selectedTimeRange}
             onClick={() => {
-            
-              props.onSaveToLocalStorage(selectedTask, selectedTimeRange, selectedStepSize);
-              setShowForm(false);
+              props.onSaveToLocalStorage(
+                selectedTask,
+                selectedTimeRange,
+                selectedStepSize
+              );
               setFormVisibility(false);
             }}
           >
             Create Chart
           </Button>
-          </DialogActions>
+        </DialogActions>
       </Dialog>
     </div>
-)
-
-
+  );
 };
 
 export const CustomChart = (props) => {
@@ -195,9 +182,3 @@ export const CustomChart = (props) => {
     </Container>
   );
 };
-
-
-   
-
-    
-     

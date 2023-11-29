@@ -4,6 +4,13 @@
 
 const actions = {
   data: {
+    '': [
+      {
+        type: '',
+        help: '',
+        unit: '',
+      },
+    ],
     cadvisor_version_info: [
       {
         type: 'gauge',

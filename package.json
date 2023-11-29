@@ -25,6 +25,8 @@
     "@emotion/styled": "^11.11.0",
     "@kubernetes/client-node": "^0.20.0",
     "@mui/material": "^5.14.18",
+    "@mui/styles": "^5.14.18",
+    "@mui/system": "^5.14.18",
     "axios": "^1.6.1",
     "chart.js": "^4.4.0",
     "chartjs": "^0.3.24",

@@ -21,7 +21,6 @@ const DropDownMenu = (props) => {
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedTimeRange, setSelectedTimeRange] = useState('');
   const [selectedStepSize, setSelectedStepSize] = useState();
-  // const [showForm, setShowForm] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
 
   const classes = styled((theme) => ({

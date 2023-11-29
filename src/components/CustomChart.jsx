@@ -18,7 +18,7 @@ const DropDownMenu = (props) => {
   const [buttonStatus, setButtonStatus] = useState(true);
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedTimeRange, setSelectedTimeRange] = useState('');
-  const [selectedStepSize, setSelectedStepSize] = useState('');
+  const [selectedStepSize, setSelectedStepSize] = useState();
   const [showForm, setShowForm] = useState(false);
 
   const actionTasks = Object.keys(actions.data);
@@ -43,9 +43,9 @@ const DropDownMenu = (props) => {
   }
 
   //Options for collection time in dropdown
-  const timeranges = ['1h', '2h', '4h', '6h', '12h', '24h'];
+  const timeranges = ['1m', '5m', '10m', '30m', '1h', '2h', '4h', '8h'];
   //Options for data step intervals in dropdown
-  const stepsizes = ['10s', '15s', '30s', '60s', '120s', '300s'];
+  const stepsizes = [1, 5, 10, 30, 60, 120, 240, 480];
 
   const ddTimeRanges = timeranges.map((range) => (
     <MenuItem key={range} value={range}>
@@ -53,9 +53,9 @@ const DropDownMenu = (props) => {
     </MenuItem>
   ));
 
-  const ddStepSizes = stepsizes.map((stepSize) => (
-    <MenuItem key={stepSize} value={stepSize}>
-      {stepSize}
+  const ddStepSizes = stepsizes.map((size) => (
+    <MenuItem key={size} value={size}>
+      {size}
     </MenuItem>
   ));
 
@@ -93,23 +93,6 @@ const DropDownMenu = (props) => {
             </Select>
           </FormControl>
 
-          {/* <FormControl>
-        <Autocomplete
-          disablePortal
-          id='task-dropdown'
-          options={ddActionTasks}
-          sx={{ width: 300 }}
-          // getOptionLabel={(options) => ''}
-          // onChange={(e) => {
-          //   // only when query selected can we create a chart. HAVING ISSUES WITH THIS. W/ THE CURRENT HELP INFORMATION, UNABLE TO MAKE THIS INTO AN AUTOCOMPLETE
-          //   const newValue = e.target.value;
-          //   setButtonStatus(false);
-          // }}
-          renderInput={(params) => (
-            <TextField {...params} label='Search Query' />
-          )}
-        ></Autocomplete>
-      </FormControl> */}
           <p>Selected Value: {selectedTask}</p>
           <FormControl fullWidth>
             <InputLabel id='timeRange'>Set a time range</InputLabel>
@@ -126,7 +109,7 @@ const DropDownMenu = (props) => {
             </Select>
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel id='stepsize'>Set a step size</InputLabel>
+            <InputLabel id='stepsize'>Set a step size (seconds)</InputLabel>
             <Select
               id='stepsizeOptions'
               value={selectedStepSize}
@@ -142,13 +125,13 @@ const DropDownMenu = (props) => {
 
           <Button
             variant='contained'
-            disabled={buttonStatus}
+            disabled={!selectedTask || !selectedTimeRange}
             onClick={() => {
-              const newQuery =
-                //this would be a fetch request to the backend passing in the constructed query statement
-                selectedTask + `[${selectedTimeRange}]`;
-              // + `[${selectedStepSize}]`;
-              props.onSaveToLocalStorage(selectedTask, selectedTimeRange);
+              props.onSaveToLocalStorage(
+                selectedTask,
+                selectedTimeRange,
+                selectedStepSize
+              );
               setShowForm(false);
             }}
           >

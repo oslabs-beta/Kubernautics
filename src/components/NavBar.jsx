@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import nautics from '../../assets/images/nautics';
+// import nautics from '../../assets/images/nautics';
 
-const NavBar = (props) => {
+const NavBar = () => {
   return (
     <header className='navBar'>
       <div className='brand'>
-        <img src={nautics} className='logo' />
+        {/* <img src={nautics} className='logo' /> */}
         <h1>Kubernautics</h1>
       </div>
 

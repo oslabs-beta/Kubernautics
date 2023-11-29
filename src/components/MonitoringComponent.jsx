@@ -4,14 +4,17 @@ import Chart from 'chart.js/auto'; // -> automatic module import based on the fi
 import { enUS } from 'date-fns/locale';
 import 'chartjs-adapter-date-fns';
 
-const MonitoringComponent = ({ query, range }) => {
+const MonitoringComponent = ({ query, range, stepSize }) => {
   const [lineData, setLineData] = useState();
   const [options, setOptions] = useState();
   const [title, setTitle] = useState();
 
   const fetchData = async () => {
     try {
-      const rangeStmt = `[${range}]` || '';
+      const rangeStmt = range
+        ? `[${range}${stepSize ? ':' + stepSize + 's' : ''}]`
+        : '';
+      console.log(rangeStmt);
       const response = await fetch('/api/pull', {
         method: 'POST',
         headers: {
@@ -23,17 +26,38 @@ const MonitoringComponent = ({ query, range }) => {
         }),
       });
       const result = await response.json();
-      // console.log('Data from server:', result.data);
-
+      console.log(result);
+      const colorCodes = [
+        [255, 0, 0],
+        [0, 255, 0],
+        [0, 0, 255],
+        [255, 255, 0],
+        [255, 0, 255],
+        [0, 255, 255],
+        [128, 0, 0],
+        [0, 128, 0],
+        [0, 0, 128],
+        [128, 128, 0],
+        [128, 0, 128],
+        [0, 128, 128],
+        [64, 0, 0],
+        [0, 64, 0],
+        [0, 0, 64],
+        [64, 64, 0],
+        [64, 0, 64],
+        [0, 64, 64],
+      ];
       setTitle(result.data.result[0].metric.__name__.replaceAll('_', ' '));
       let labels = [];
-      const datasets = result.data.result.reduce((res, dataset) => {
+      const datasets = result.data.result.reduce((res, dataset, i) => {
+        const colorIndex = i;
         res.push({
           label: dataset.metric.pod,
-          borderColor: 'rgba(75,192,192,1)',
-          // borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`, // re-implement later in a way that persists the color across updates/re-renders
+          //From a pre-curated array of colors.
+          //Makes it so that upon chart refresh, the lines still retain the same color scheme.
+          borderColor: `rgba(${colorCodes[colorIndex].join(',')})`,
           data: dataset.values.map((val) => {
-            // the timestamps are provided in Unix time format -- the number of
+            // The timestamps are provided in Unix time format -- the number of
             // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
             // These seconds need to be converted to milliseconds before being
             // passed into a Date object.
@@ -86,11 +110,21 @@ const MonitoringComponent = ({ query, range }) => {
         animation: true,
         plugins: {
           legend: {
-            display: false,
+            display: true,
+            labels: {
+              boxWidth: 5,
+              boxHeight: 5,
+              fontSize: 4,
+              itemSpacing: 2,
+            },
           },
         },
         elements: {
           backgroundColor: 'rgba(50, 50, 200, 80)',
+          point: {
+            radius: 5,
+            hoverRadius: 2,
+          },
         },
       };
       setLineData(lineData);
@@ -107,7 +141,7 @@ const MonitoringComponent = ({ query, range }) => {
     // Set up an interval to fetch data every 30 seconds
     const intervalId = setInterval(() => {
       fetchData();
-    }, 15000); // 30 seconds in milliseconds
+    }, 1000 * (stepSize + 1 || 15)); //1000 * (stepSize + 1)); //(stepSize || 15)); // 30 seconds in milliseconds
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);

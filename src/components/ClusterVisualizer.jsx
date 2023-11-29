@@ -32,7 +32,12 @@ export const ClusterVisualizer = () => {
 
     nodes.forEach((node, index) => {
       const nodeId = `node-${index}`;
-      createdNodes.push({ id: nodeId, label: node.metadata.name, shape: 'circle', color: 'grey' });
+      createdNodes.push({
+        id: nodeId,
+        label: node.metadata.name,
+        shape: 'circle',
+        color: 'grey',
+      });
 
       services.forEach((service, serviceIndex) => {
         const serviceNodeId = `service-${serviceIndex}`;
@@ -42,8 +47,13 @@ export const ClusterVisualizer = () => {
             ? service.metadata.name.slice(0, 10)
             : service.metadata.name,
           shape: 'box',
-          color: '#6FB1FC'})
-        createdEdges.push({ from: nodeId, to: serviceNodeId, id: `edge-service-${serviceIndex}` });
+          color: '#6FB1FC',
+        });
+        createdEdges.push({
+          from: nodeId,
+          to: serviceNodeId,
+          id: `edge-service-${serviceIndex}`,
+        });
 
         pods.forEach((pod, podIndex) => {
           if (pod.metadata.name.includes(service.metadata.name.toLowerCase())) {
@@ -54,8 +64,13 @@ export const ClusterVisualizer = () => {
                 ? pod.metadata.name.slice(0, 10)
                 : pod.metadata.name,
               shape: 'box',
-              color: 'white'})
-            createdEdges.push({ from: serviceNodeId, to: podNodeId, id: `edge-${podIndex}` });
+              color: 'white',
+            });
+            createdEdges.push({
+              from: serviceNodeId,
+              to: podNodeId,
+              id: `edge-${podIndex}`,
+            });
           }
         });
       });
@@ -68,8 +83,7 @@ export const ClusterVisualizer = () => {
 
   const options = {
     layout: {
-      randomSeed: 10, 
- 
+      randomSeed: 10,
     },
     height: '1000px',
     physics: {
@@ -78,7 +92,7 @@ export const ClusterVisualizer = () => {
         centralGravity: 0,
         springLength: 150,
         springConstant: 0.003,
-        damping: 0.09
+        damping: 0.09,
       },
     },
     edges: {
@@ -93,7 +107,12 @@ export const ClusterVisualizer = () => {
     },
   };
 
-  return <Graph key={JSON.stringify(graph)} graph={graph} options={options} events={events} />;
+  return (
+    <Graph
+      key={JSON.stringify(graph)}
+      graph={graph}
+      options={options}
+      events={events}
+    />
+  );
 };
-
-

@@ -4,6 +4,13 @@
 
 const actions = {
   data: {
+    '': [
+      {
+        type: '',
+        help: '',
+        unit: '',
+      },
+    ],
     cadvisor_version_info: [
       {
         type: 'gauge',
@@ -1136,7 +1143,9 @@ const actions = {
       },
     ],
     node_network_speed_bytes: [
-      { type: 'gauge', help: 'Network device property: speed_bytes', unit: '' },
+      { type: 'gauge', 
+      help: 'Network device property: speed_bytes', 
+      unit: '' },
     ],
     node_network_transmit_bytes_total: [
       {
@@ -1449,10 +1458,14 @@ const actions = {
       },
     ],
     node_sockstat_sockets_used: [
-      { type: 'gauge', help: 'Number of IPv4 sockets in use.', unit: '' },
+      { type: 'gauge', 
+      help: 'Number of IPv4 sockets in use.', 
+      unit: '' },
     ],
     node_softnet_backlog_len: [
-      { type: 'gauge', help: 'Softnet backlog status', unit: '' },
+      { type: 'gauge', 
+      help: 'Softnet backlog status', 
+      unit: '' },
     ],
     node_softnet_cpu_collision_total: [
       {
@@ -1472,7 +1485,9 @@ const actions = {
       },
     ],
     node_softnet_processed_total: [
-      { type: 'counter', help: 'Number of processed packets', unit: '' },
+      { type: 'counter', 
+      help: 'Number of processed packets', 
+      unit: '' },
     ],
     node_softnet_received_rps_total: [
       {

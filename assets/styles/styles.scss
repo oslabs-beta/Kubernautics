@@ -39,7 +39,7 @@ header.navBar {
     height: 52px;
     top: 9px;
   }
-  
+
   .brand {
     display: flex;
     align-items: center;
@@ -49,7 +49,6 @@ header.navBar {
       margin: 0;
     }
   }
-  
 
   nav {
     display: flex;
@@ -60,12 +59,12 @@ header.navBar {
       display: inline;
       margin: 0 1rem;
     }
-  
+
     // linkstyling
     a {
       color: inherit;
       text-decoration: none;
-  
+
       &:hover {
         text-decoration: underline;
       }

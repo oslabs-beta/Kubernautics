@@ -21,25 +21,22 @@ const DropDownMenu = (props) => {
   const [selectedTask, setSelectedTask] = useState('');
   const [selectedTimeRange, setSelectedTimeRange] = useState('');
   const [selectedStepSize, setSelectedStepSize] = useState();
-  // const [showForm, setShowForm] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
 
   const classes = styled((theme) => ({
-    // Customize the styles for the Dialog component
     customDialog: {
       width: '1500px',
       maxHeight: '350px',
       padding: theme.spacing(2),
     },
     customMenu: {
-      // Set the desired width for the dropdown menu
       width: '1400px',
       maxHeight: '350px',
       padding: theme.spacing(2),
     },
   }));
   const actionTasks = Object.keys(actions.data);
-  //Provide the possible promql metric look ups, type, and help description
+  // Provide the possible PromQL metric look ups, types, and help descriptions
   const ddActionTasks = [];
   for (let i = 0; i < actionTasks.length; i++) {
     ddActionTasks.push(
@@ -59,9 +56,9 @@ const DropDownMenu = (props) => {
     );
   }
 
-  //Options for collection time in dropdown
+  // Options for collection time in dropdown
   const timeranges = ['1m', '5m', '10m', '30m', '1h', '2h', '4h', '8h'];
-  //Options for data step intervals in dropdown
+  // Options for data step intervals in dropdown
   const stepsizes = [1, 5, 10, 30, 60, 120, 240, 480];
 
   const ddTimeRanges = timeranges.map((range) => (
@@ -76,7 +73,7 @@ const DropDownMenu = (props) => {
     </MenuItem>
   ));
 
-  //Form control has a scroll if there is too many options
+  // Form control has a scroll bar incase too many options are listed
   return (
     <div>
       <Button variant='contained' onClick={() => setFormVisibility(true)}>
@@ -109,7 +106,7 @@ const DropDownMenu = (props) => {
                   MenuProps={{
                     PaperProps: {
                       style: {
-                        maxHeight: 280, // Set the maximum height of the dropdown menu
+                        maxHeight: 280, 
                       },
                       className: classes.customMenu,
                     },

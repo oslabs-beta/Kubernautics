@@ -8,6 +8,7 @@ export const ClusterVisualizer = () => {
   const [shortenName, setShortenName] = useState(true);
 
   useEffect(() => {
+    // Fetch all Pods, Services, and Nodes
     const fetchData = async () => {
       try {
         const podsResponse = await fetch('/api/clusterMap/pods');
@@ -26,6 +27,7 @@ export const ClusterVisualizer = () => {
     fetchData();
   }, []);
 
+  // Store the fetched data in the below arrays to create connection links between the elements
   const createGraph = () => {
     const createdNodes = [];
     const createdEdges = [];
@@ -81,6 +83,7 @@ export const ClusterVisualizer = () => {
 
   const graph = createGraph();
 
+  // Interactivity and visuals of the network map
   const options = {
     layout: {
       randomSeed: 10,
@@ -100,6 +103,7 @@ export const ClusterVisualizer = () => {
     },
   };
 
+  // Shorten the name of the element based on click toggle
   const events = {
     select: function (event) {
       setShortenName(!shortenName);

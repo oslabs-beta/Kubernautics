@@ -65,8 +65,21 @@ Kubernautics is an open-source <b> cluster monitoring solution </b> that looks t
   ![visualizer](https://i.imgur.com/wF4wX7t.gif)
 
 ## Getting Started with Kubernautics
+### Building the Container Image
+The Kubernautics container image must currently be built from source. Download a copy of this repo, and once inside run --
+```
+docker build . -t kubernautics:latest
+```
+-- to yield an image that can be deployed into your cluster.
 
-Let’s walk through how to get your cluster [setup with Kubernautics](/GETTINGSTARTED.md)
+### Deploying to your cluster
+Kubernautics currently assumes it can communicate with prometheus at the following address --
+```
+http://prometheus-kube-prometheus-prometheus:9090
+```
+-- which is the default configuration when Prometheus is deployed via the [Community Helm Chart](https://prometheus-community.github.io/helm-charts). We plan to make this configurable in the future.
+
+For a reference deployment, you can run `npm run cluster:prod up` from inside the repository. You will need `minikube` and `devspace` installed locally on your machine; see [the setup guide for developers](/DEV_SETUP.md) for more info.
 
 ## How to Contribute
 
@@ -74,6 +87,8 @@ Let’s walk through how to get your cluster [setup with Kubernautics](/GETTINGS
 2. Create your Feature Branch based off of Dev
 
 - `git checkout -b feature/NewFeature`
+
+3. [Setup/enter the development environment](/DEV_SETUP.md)
 
 3. Commit your Changes
 

@@ -1,6 +1,5 @@
 //https://promlabs.com/blog/2020/12/17/promql-queries-for-exploring-your-metrics/
 //Promlab offers a type of semantic based meaning behind the metrics but this information is not directly accessible via PromQL
-//took some of the actions from the api but condensed it down, skipping over any prometheus metrics
 
 const actions = {
   data: {

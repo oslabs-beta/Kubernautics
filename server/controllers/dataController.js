@@ -1,5 +1,6 @@
 const dataController = {};
 
+// Submit a query to Prometheus 
 dataController.getData = async (req, res, next) => {
   try {
     const response = await fetch(

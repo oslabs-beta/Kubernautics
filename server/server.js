@@ -19,7 +19,12 @@ app.get('/', (req, res) => {
   res.status(200).sendFile('src/components/pages/Dashboard/index.html');
 });
 
-//Global Error Handler
+// Unknown Route Handler 
+app.use((req, res) => {
+  return res.status(404).send('Page not found');
+});
+
+// Global Error Handler
 app.use((err, req, res, next) => {
   const globalError = {
     log: 'Global Error Found',

@@ -110,7 +110,7 @@ Let’s walk through how to get your cluster [setup with Kubernautics](/GETTINGS
 <table>
   <tr>
     <td align="center">
-      <img src="https://1.gravatar.com/userimage/243322748/3e4a9db5d5c09b9d70ff837f6ce0bba3?size=original" alt= “Jordan” width="150px;"  alt=""/>
+      <img src="https://gravatar.com/userimage/230916546/d26e38adbf07961ad978c884b76d2388.jpeg?size=256" alt= “Jordan” width="150px;" alt=""/>
       <br />
       <sub><b>Jordan Buranskas</b></sub>
       <br />

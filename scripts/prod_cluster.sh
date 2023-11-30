@@ -33,7 +33,7 @@ if [ $1 == 'up' ]; then
     npm run build
     devspace use namespace kubernautics
     devspace deploy -b
-    echo "Done! Kubernautics can be accessed at http://$(minikube ip):30100"
+    minikube service kubernautics-service -n kubernautics
 elif [ $1 == 'down' ]; then
     # stop
     minikube delete -p kubernautics-prod

@@ -1,11 +1,12 @@
 {
   "name": "kubernautics",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "description": "Kubernautics",
   "main": "index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "cluster": "./scripts/dev_cluster.sh",
+    "cluster:prod": "./scripts/prod_cluster.sh",
     "dev": "NODE_ENV=development EXPRESS_PORT=3010 concurrently 'nodemon server/index.js' 'webpack-dev-server --open'",
     "start": "NODE_ENV=production node server/index.js",
     "test": "jest --verbose -c ./jest.all.config.js"

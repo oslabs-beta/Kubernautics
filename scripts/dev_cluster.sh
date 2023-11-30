@@ -15,7 +15,7 @@
 # The script presumes minikube and devspace are is installed on the machine,
 # and will fail if those programs can't be found.
 
-MINIKUBE_PROFILE=kubernautics
+MINIKUBE_PROFILE=kubernautics-dev
 
 profile_exists() {
     profile_match=$(minikube profile list | cut -d "|" -f 2 | grep -E "^\s$MINIKUBE_PROFILE\s$" | wc -l)
@@ -70,7 +70,7 @@ if [ $1 == 'up' ]; then
     fi
     
     # start up the devspace dev environment in a project-specific k8s namespace
-    devspace use namespace kubernautics-dev
+    devspace use namespace kubernautics
     devspace dev
 elif [ $1 == 'down' ]; then
     # ensure the project's cluster is still present

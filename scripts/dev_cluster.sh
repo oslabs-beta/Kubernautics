@@ -71,7 +71,7 @@ if [ $1 == 'up' ]; then
     
     # start up the devspace dev environment in a project-specific k8s namespace
     devspace use namespace kubernautics
-    devspace dev
+    devspace dev --kube-context $MINIKUBE_PROFILE
 elif [ $1 == 'down' ]; then
     # ensure the project's cluster is still present
     if profile_exists; then

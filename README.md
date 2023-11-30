@@ -1,13 +1,10 @@
 # Kubernautics
 
-![Kubernautics-logo](assets/images/nautics.png)
-
+<div align= "center">
+<img src ="assets/images/nautics-resize.jpg" />
+</div>
 <div >
 Kubernautics is an open-source <b> cluster monitoring solution </b> that looks to prioritize ease of deployment, ease of use, and a low resource footprint. The program is placed directly into the cluster it is meant to monitor, and interfaces with your Prometheus deployment to provide detailed, reliable metric data. When you arrive at the UI, at your disposal are two dynamic tools to shape your monitoring experience; the dashboard of prometheus-fed cluster and application metrics, and the kubernetes cluster visualizer.
-
-### Link to product website
-
-### Link to linkedin
 
 </div>
 
@@ -126,7 +123,7 @@ Let’s walk through how to get your cluster [setup with Kubernautics](/GETTINGS
       <a href="https://github.com/edli-dot"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" height="20px"/></a>
     </td>
     <td align="center">
-      <img src="https://gravatar.com/userimage/243322599/69d6297c1eb2a460f5f31aefa671472a.jpeg?size=256" alt= "Matin" width="150px;" />
+      <img src="https://gravatar.com/userimage/243322599/685076119aa1254f3d14a00ae5514fbd.jpeg?size=256" alt= "Matin" width="150px;" />
       <br />
       <sub><b>Matin Schams</b></sub>
       <br />
@@ -146,6 +143,8 @@ Let’s walk through how to get your cluster [setup with Kubernautics](/GETTINGS
 </table>
 
 ## License
+
+By contributing, you agree that your contributions will be licensed under Kubernautics's MIT License.
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 

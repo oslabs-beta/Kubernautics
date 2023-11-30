@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: kubernautics-dev  
+  namespace: kubernautics  
 roleRef:
   kind: ClusterRole
   name: list-resources

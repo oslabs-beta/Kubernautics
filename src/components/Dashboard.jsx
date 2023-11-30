@@ -6,7 +6,7 @@ import { CustomChart } from './CustomChart';
 const Dashboard = (props) => {
   const defaultCharts = [
     {
-      query: 'container_cpu_usage_seconds_total{namespace="kubernautics-dev"}',
+      query: 'container_cpu_usage_seconds_total',
       range: '20m',
       stepSize: 80,
     },

@@ -32,7 +32,7 @@ if [ $1 == 'up' ]; then
     rm -rf dist/
     npm run build
     devspace use namespace kubernautics
-    devspace deploy -b
+    devspace deploy -b --kube-context kubernautics-prod
     minikube service kubernautics-service -n kubernautics
 elif [ $1 == 'down' ]; then
     # stop

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import nautics from '../../assets/images/nautics';
 
+// Navigation Bar at the top of our Homepage
 const NavBar = () => {
   return (
     <header className='navBar'>

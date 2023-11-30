@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MonitoringComponent from './MonitoringComponent';
 import { CustomChart } from './CustomChart';
-// import ClearChart from './ClearCharts';
+
+// Initial chart rendered on Homepage load
 const Dashboard = (props) => {
   const defaultCharts = [
     {
@@ -10,29 +11,26 @@ const Dashboard = (props) => {
       stepSize: 80,
     },
   ];
+  // Verify or set a storage object with session key
   const [charts, setCharts] = useState(() => {
     const storedData = JSON.parse(localStorage.getItem('session'));
     if (storedData) {
-      // If there is data in localStorage, return it
       return storedData;
     } else {
-      // If no data in localStorage, create a new session and return it
       const newData = [...defaultCharts];
       localStorage.setItem('session', JSON.stringify(newData));
       return newData;
     }
   });
-
+  // Update existing localStorage 
   const SaveDataToLocalStorage = (query, range, stepSize) => {
-    //Get the existing Data from localStorage
     const existingData = JSON.parse(localStorage.getItem('session')) || [];
-    //Update the existing storage with the data passed through
     console.log('existingData', existingData);
     const newData = [
       ...existingData,
       { query: query, range: range, stepSize: stepSize },
     ];
-    //Rewrite the localstorage
+    // Rewrite the localstorage
     localStorage.setItem('session', JSON.stringify(newData));
     setCharts(JSON.parse(localStorage.getItem('session')));
   };

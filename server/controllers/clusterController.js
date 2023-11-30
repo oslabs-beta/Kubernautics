@@ -6,9 +6,10 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
+// Fetch all Pods within the kubernetes cluster
 clusterController.getPods = async (req, res, next) => {
   try {
-    const podsRes = await k8sApi.listNamespacedPod('kubernautics-dev');
+    const podsRes = await k8sApi.listPodForAllNamespaces();
     const pods = podsRes.body.items;
     res.locals.pods = pods;
     return next();
@@ -21,6 +22,7 @@ clusterController.getPods = async (req, res, next) => {
   }
 };
 
+// Fetch all Nodes within the kubernetes cluster
 clusterController.getNodes = async (req, res, next) => {
   try {
     const nodesRes = await k8sApi.listNode();
@@ -36,9 +38,10 @@ clusterController.getNodes = async (req, res, next) => {
   }
 };
 
+// Fetch all Services within the kubernetes cluster
 clusterController.getServices = async (req, res, next) => {
   try {
-    const servicesResponse = await k8sApi.listNamespacedService('kubernautics-dev');
+    const servicesResponse = await k8sApi.listServiceForAllNamespaces();
     if (!servicesResponse.body) {
       console.error('No response body found in services response:', servicesResponse);
       res.locals.services = [];

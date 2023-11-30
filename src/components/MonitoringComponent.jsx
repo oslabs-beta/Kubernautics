@@ -9,6 +9,7 @@ const MonitoringComponent = ({ query, range, stepSize }) => {
   const [options, setOptions] = useState();
   const [title, setTitle] = useState();
 
+  // Render a monitoring chart based on selected query 
   const fetchData = async () => {
     try {
       const rangeStmt = range
@@ -27,6 +28,7 @@ const MonitoringComponent = ({ query, range, stepSize }) => {
       });
       const result = await response.json();
       console.log(result);
+      // Curated list of pre-defined colors
       const colorCodes = [
         [255, 0, 0],
         [0, 255, 0],
@@ -53,14 +55,8 @@ const MonitoringComponent = ({ query, range, stepSize }) => {
         const colorIndex = i;
         res.push({
           label: dataset.metric.pod,
-          //From a pre-curated array of colors.
-          //Makes it so that upon chart refresh, the lines still retain the same color scheme.
           borderColor: `rgba(${colorCodes[colorIndex].join(',')})`,
           data: dataset.values.map((val) => {
-            // The timestamps are provided in Unix time format -- the number of
-            // seconds that have elapsed since Jan 1st, 1970 (UTC) aka Unix epoch.
-            // These seconds need to be converted to milliseconds before being
-            // passed into a Date object.
             const timestamp = val[0] * 1000;
             labels.push(timestamp);
             return [timestamp, val[1]];
@@ -74,6 +70,7 @@ const MonitoringComponent = ({ query, range, stepSize }) => {
         datasets: datasets,
       };
 
+      // Style configuration for the rendered chart
       const options = {
         scales: {
           x: {
@@ -96,14 +93,6 @@ const MonitoringComponent = ({ query, range, stepSize }) => {
           },
           y: {
             type: 'linear',
-            // Eventually we will want y-axis labels that reflect the units
-            // being employed by a given chart. When that feature is ready,
-            // this is where/how the title will be declared:
-            //
-            // title: {
-            //   display: true,
-            //   text: 'millicores',
-            // },
             beginAtZero: true,
           },
         },
@@ -135,20 +124,15 @@ const MonitoringComponent = ({ query, range, stepSize }) => {
   };
 
   useEffect(() => {
-    // Fetch data initially
     fetchData();
-
     // Set up an interval to fetch data every 30 seconds
     const intervalId = setInterval(() => {
       fetchData();
-    }, 1000 * (stepSize + 1 || 15)); //1000 * (stepSize + 1)); //(stepSize || 15)); // 30 seconds in milliseconds
-
-    // Clear the interval when the component unmounts
+    }, 1000 * (stepSize + 1 || 15)); 
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []); 
 
   // Conditional rendering of lineData and options
-  // Line graph doesn't render until lineData and options both exist
   return (
     <div className='monitor'>
       <h2>{title}</h2>

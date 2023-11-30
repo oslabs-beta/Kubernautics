@@ -5,12 +5,6 @@ import { BrowserRouter, Router, Route, Link, Routes } from 'react-router-dom';
 import { CustomChart } from './CustomChart';
 import { ClusterVisualizer } from './ClusterVisualizer';
 
-//effectively will be our home page
-//client side rendering and navigation to maintain a SPA
-//react will render the component w/o making a full page reload ==> smoother
-//least server interactions should make it faster
-
-//BrowserRouter serves as the wrapper
 function App() {
   return (
     <BrowserRouter>
